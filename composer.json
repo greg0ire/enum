@@ -1,0 +1,22 @@
+{
+    "name": "gparis/enum",
+    "description": "work around the missing enum type in php",
+    "require-dev": {
+        "phpunit/phpunit": "~4.1"
+    },
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Grégoire Paris",
+            "email": "gparis@universcine.com"
+        }
+    ],
+    "config":{
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Greg0ire\\Enum\\": "src"
+        }
+    }
+}
