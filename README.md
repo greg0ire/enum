@@ -3,6 +3,10 @@
 This package holds a simple class that may be use as an ancestor for your
 enum classes.
 
+# Installation
+
+    composer require greg0ire/enum
+
 ## Usage
 
 Extend the `Greg0ire\Enum\BaseEnum`, define your enum key values as constants,
