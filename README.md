@@ -15,7 +15,7 @@ and Bob's your uncle. You can make the class abstract or final, as you see fit.
 ```php
 use Greg0ire\Enum\BaseEnum;
 
-final class DaysOfWeek extends BasicEnum {
+final class DaysOfWeek extends BaseEnum {
     const Sunday = 0;
     const Monday = 1;
     const Tuesday = 2;
