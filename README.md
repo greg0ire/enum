@@ -55,7 +55,9 @@ see [CONTRIBUTING.md][1]
 
 This is a shameless rip-off of [this Stack Overflow answer][0], with one
 modification: the `getConstants` method has been made public so that it is
-available for building choice widgets, for instance.
+available for building choice widgets, for instance. If you want to give credit
+to someone for this, give it to [Brian Cline][2]
 
 [0]: http://stackoverflow.com/a/254543/353612
 [1]: ./CONTRIBUTING.md
+[2]: http://stackoverflow.com/users/32536/brian-cline
