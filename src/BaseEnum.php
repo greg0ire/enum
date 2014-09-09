@@ -4,7 +4,7 @@ namespace Greg0ire\Enum;
 
 abstract class BaseEnum
 {
-    private static $constCache = NULL;
+    private static $constCache = array();
 
     /**
      * Uses reflection to find the constants defined in the class and cache
@@ -15,12 +15,14 @@ abstract class BaseEnum
      */
     public static function getConstants()
     {
-        if (self::$constCache === NULL) {
-            $reflect = new \ReflectionClass(get_called_class());
-            self::$constCache = $reflect->getConstants();
+        $cacheKey = get_called_class();
+
+        if (!isset(self::$constCache[$cacheKey])) {
+            $reflect = new \ReflectionClass($cacheKey);
+            self::$constCache[$cacheKey] = $reflect->getConstants();
         }
 
-        return self::$constCache;
+        return self::$constCache[$cacheKey];
     }
 
     /**
