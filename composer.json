@@ -1,6 +1,7 @@
 {
     "name": "greg0ire/enum",
     "description": "work around the missing enum type in php",
+    "keywords": ["enum", "enumeration"],
     "require-dev": {
         "phpunit/phpunit": "~4.1"
     },
