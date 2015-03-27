@@ -1,0 +1,13 @@
+env:
+    - COMPOSER_OPTIONS=""
+    - COMPOSER_OPTIONS="--prefer-lowest"
+language: php
+php:
+    - 5.4
+    - 5.5
+    - 5.6
+    - hhvm
+    - nightly
+before_install: composer self-update
+install: composer update ${COMPOSER_OPTIONS}
+script: bin/phpunit
