@@ -3,6 +3,8 @@
 This package holds a simple class that may be used as an ancestor for your
 enum classes.
 
+[![Build Status][3]](https://travis-ci.org/greg0ire/enum)
+
 ## Installation
 
     composer require greg0ire/enum
@@ -61,3 +63,4 @@ to someone for this, give it to [Brian Cline][2]
 [0]: http://stackoverflow.com/a/254543/353612
 [1]: ./CONTRIBUTING.md
 [2]: http://stackoverflow.com/users/32536/brian-cline
+[3]: https://travis-ci.org/greg0ire/enum.svg?branch=master
