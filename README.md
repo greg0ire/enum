@@ -3,7 +3,7 @@
 This package holds a simple class that may be used as an ancestor for your
 enum classes.
 
-# Installation
+## Installation
 
     composer require greg0ire/enum
 
