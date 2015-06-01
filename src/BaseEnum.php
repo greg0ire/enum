@@ -49,14 +49,16 @@ abstract class BaseEnum
     /**
      * Checks whether a constant with this value is defined.
      *
-     * @param mixed string|int the value to test
+     * @param int|string $value  the value to test
+     * @param bool       $strict check the types of the value in the values
      *
-     * @return boolean the result of the test
+     * @return bool the result of the test
+     *
      */
-    public static function isValidValue($value)
+    public static function isValidValue($value, $strict = true)
     {
         $values = array_values(self::getConstants());
 
-        return in_array($value, $values, $strict = true);
+        return in_array($value, $values, $strict);
     }
 }
