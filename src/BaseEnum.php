@@ -15,14 +15,30 @@ abstract class BaseEnum
      */
     public static function getConstants()
     {
-        $cacheKey = get_called_class();
+        $enumTypes = static::getEnumTypes();
+        $enums     = array();
 
-        if (!isset(self::$constCache[$cacheKey])) {
-            $reflect = new \ReflectionClass($cacheKey);
-            self::$constCache[$cacheKey] = $reflect->getConstants();
+        if (!is_array($enumTypes)) {
+            $enumTypes = array($enumTypes);
+        }
+        foreach ($enumTypes as $key => $enumType) {
+            $cacheKey = is_integer($key) ? $enumType : $key;
+
+            if (!isset(self::$constCache[$cacheKey])) {
+                $reflect                     = new \ReflectionClass($enumType);
+                self::$constCache[$cacheKey] = $reflect->getConstants();
+            }
+            if (count($enumTypes) > 1) {
+                foreach (self::$constCache[$cacheKey] as $subKey => $value) {
+                    $subKey         = $cacheKey . (is_integer($key) ? '::' : '.') . $subKey;
+                    $enums[$subKey] = $value;
+                }
+            } else {
+                $enums = self::$constCache[$cacheKey];
+            }
         }
 
-        return self::$constCache[$cacheKey];
+        return $enums;
     }
 
     /**
@@ -49,14 +65,26 @@ abstract class BaseEnum
     /**
      * Checks whether a constant with this value is defined.
      *
-     * @param mixed string|int the value to test
+     * @param int|string $value  the value to test
+     * @param bool       $strict check the types of the value in the values
      *
-     * @return boolean the result of the test
+     * @return bool the result of the test
+     *
      */
-    public static function isValidValue($value)
+    public static function isValidValue($value, $strict = true)
     {
         $values = array_values(self::getConstants());
 
-        return in_array($value, $values, $strict = true);
+        return in_array($value, $values, $strict);
+    }
+
+    /**
+     * Adds possibility several classes together
+     *
+     * @return array
+     */
+    protected static function getEnumTypes()
+    {
+        return array(get_called_class());
     }
 }

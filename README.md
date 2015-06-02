@@ -11,6 +11,8 @@ enum classes.
 
 ## Usage
 
+### Basic usage
+
 Extend the `Greg0ire\Enum\BaseEnum`, define your enum key values as constants,
 and Bob's your uncle. You can make the class abstract or final, as you see fit.
 
@@ -47,6 +49,69 @@ Additionally, you may get all the constants in your class as a hash:
 
 ```php
 DaysOfWeek::getConstants()
+```
+
+### Advanced usage
+
+If you need to get the constants from a class you cannot modify, or from an
+interface, or even from several classes / interfaces, you may override
+`BaseEnum::getEnumTypes()`.
+
+For example, if you have the following class and interface :
+
+
+```php
+namespace Vendor\Namespace;
+
+class ClassFromAVendor
+{
+   const SOMETHING      = 'something';
+   const SOMETHING_ELSE = 'something_else';
+}
+```
+
+```php
+namespace My\Namespace;
+
+interface SomeInterface
+{
+   const ANOTHER_CONST = 'another_const';
+}
+```
+
+You can get all three constants by creating this Enum :
+
+```php
+use Greg0ire\Enum\BaseEnum;
+
+final class MyEnum extends BaseEnum
+{
+    protected static function getEnumTypes()
+    {
+        return array(
+            'Vendor\Namespace\ClassFromAVendor',
+            'My\Namespace\SomeInterface',
+        );
+    }
+}
+```
+
+Alternatively, you can specify a prefix for each type to avoid getting FQCNs in
+the hash keys.
+
+```php
+use Greg0ire\Enum\BaseEnum;
+
+final class MyEnum extends BaseEnum
+{
+    protected static function getEnumTypes()
+    {
+        return array(
+            'prefix1' => 'Vendor\Namespace\ClassFromAVendor',
+            'prefix2' => 'My\Namespace\SomeInterface',
+        );
+    }
+}
 ```
 
 ## Contributing
