@@ -35,8 +35,7 @@ Then, you may use the DaysOfWeek class for input validation:
 ```php
 DaysOfWeek::isValidName('Humpday');                  // false
 DaysOfWeek::isValidName('Monday');                   // true
-DaysOfWeek::isValidName('monday');                   // true
-DaysOfWeek::isValidName('monday', $strict = true);   // false
+DaysOfWeek::isValidName('monday');                   // false
 DaysOfWeek::isValidName(0);                          // false
 
 DaysOfWeek::isValidValue(0);                         // true
