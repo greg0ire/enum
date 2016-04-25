@@ -1,17 +1,22 @@
-env:
-    - COMPOSER_OPTIONS=""
-    - COMPOSER_OPTIONS="--prefer-lowest"
 language: php
+
 php:
-    - 5.4
-    - 5.5
-    - 5.6
-    - 7.0
-    - hhvm
-    - nightly
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+  - nightly
+
 matrix:
-    allow_failures:
-        - php: nightly
-before_install: composer self-update
+  fast_finish: true
+  include:
+    - php: 5.3
+      env: COMPOSER_OPTIONS="--prefer-lowest"
+  allow_failures:
+    - php: nightly
+
 install: composer update ${COMPOSER_OPTIONS}
+
 script: bin/phpunit
