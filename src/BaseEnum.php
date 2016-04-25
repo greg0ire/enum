@@ -13,7 +13,7 @@ abstract class BaseEnum
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget
      */
-    public static function getConstants()
+    final public static function getConstants()
     {
         $enumTypes = static::getEnumTypes();
         $enums     = array();
@@ -63,21 +63,12 @@ abstract class BaseEnum
      * Checks whether a constant with this name is defined.
      *
      * @param string  $name   the name of the constant
-     * @param boolean $strict whether to make a case sensitive check
      *
      * @return boolean the result of the test
      */
-    public static function isValidName($name, $strict = false)
+    final public static function isValidName($name)
     {
-        $constants = self::getConstants();
-
-        if ($strict) {
-            return array_key_exists($name, $constants);
-        }
-
-        $keys = array_map('strtolower', array_keys($constants));
-
-        return in_array(strtolower($name), $keys);
+        return array_key_exists($name, self::getConstants());
     }
 
     /**
@@ -89,7 +80,7 @@ abstract class BaseEnum
      * @return bool the result of the test
      *
      */
-    public static function isValidValue($value, $strict = true)
+    final public static function isValidValue($value, $strict = true)
     {
         $values = array_values(self::getConstants());
 
