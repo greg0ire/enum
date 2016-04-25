@@ -74,6 +74,27 @@ class BaseEnumTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testFooGetKeys()
+    {
+        $this->assertEquals(
+            array(
+                'GOD',
+                'CHUCK',
+                'GUITRY'
+            ),
+            FooEnum::getKeys()
+        );
+
+        $this->assertEquals(
+            array(
+                'god',
+                'chuck',
+                'guitry'
+            ),
+            FooEnum::getKeys('strtolower')
+        );
+    }
+
     public function testsIsValidName()
     {
         $this->assertTrue(DummyEnum::isValidName('fiRsT'));
