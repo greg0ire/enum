@@ -16,8 +16,6 @@ matrix:
   allow_failures:
     - php: nightly
 
-before_install: composer self-update
-
 install: composer update ${COMPOSER_OPTIONS}
 
 script: bin/phpunit
