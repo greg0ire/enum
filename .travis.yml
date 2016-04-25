@@ -1,7 +1,3 @@
-env:
-  - COMPOSER_OPTIONS=""
-  - COMPOSER_OPTIONS="--prefer-lowest"
-
 language: php
 
 php:
@@ -15,6 +11,9 @@ php:
 
 matrix:
   fast_finish: true
+  include:
+    - php: 5.3
+      env: COMPOSER_OPTIONS="--prefer-lowest"
   allow_failures:
     - php: nightly
 
