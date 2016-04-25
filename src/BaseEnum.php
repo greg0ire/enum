@@ -13,7 +13,7 @@ abstract class BaseEnum
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget
      */
-    public static function getConstants()
+    final public static function getConstants()
     {
         $enumTypes = static::getEnumTypes();
         $enums     = array();
@@ -49,7 +49,7 @@ abstract class BaseEnum
      *
      * @return boolean the result of the test
      */
-    public static function isValidName($name, $strict = false)
+    final public static function isValidName($name, $strict = false)
     {
         $constants = self::getConstants();
 
@@ -71,7 +71,7 @@ abstract class BaseEnum
      * @return bool the result of the test
      *
      */
-    public static function isValidValue($value, $strict = true)
+    final public static function isValidValue($value, $strict = true)
     {
         $values = array_values(self::getConstants());
 
