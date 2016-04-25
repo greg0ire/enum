@@ -6,7 +6,7 @@
         "phpunit/phpunit": "~4.1"
     },
     "require": {
-      "php": ">=5.3.0"
+        "php": "^5.3 || ^7.0"
     },
     "license": "CC-BY-SA-3.0",
     "authors": [
