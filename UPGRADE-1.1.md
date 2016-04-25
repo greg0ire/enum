@@ -1,9 +1,5 @@
-CHANGELOG for 1.1.x
-===================
-
-This changelog references the relevant changes done in 1.1 minor versions.
-
-## 1.1.0 (2015-06-02)
+Upgrade from 1.0 to 1.1
+=======================
 
 ### General
 
