@@ -76,8 +76,7 @@ class BaseEnumTest extends \PHPUnit_Framework_TestCase
 
     public function testsIsValidName()
     {
-        $this->assertTrue(DummyEnum::isValidName('fiRsT'));
-        $this->assertFalse(DummyEnum::isValidName('fiRsT', true));
+        $this->assertFalse(DummyEnum::isValidName('fiRsT'));
         $this->assertFalse(DummyEnum::isValidName('invalid'));
     }
 
