@@ -42,6 +42,24 @@ abstract class BaseEnum
     }
 
     /**
+     * Returns constants keys.
+     *
+     * @param callable|null $callback A callable function compatible with array_map
+     *
+     * @return string[]
+     */
+    final public static function getKeys($callback = null)
+    {
+        $keys = array_keys(static::getConstants());
+
+        if (null !== $callback) {
+            return array_map($callback, $keys);
+        }
+
+        return $keys;
+    }
+
+    /**
      * Checks whether a constant with this name is defined.
      *
      * @param string  $name   the name of the constant

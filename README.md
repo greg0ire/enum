@@ -51,6 +51,13 @@ Additionally, you may get all the constants in your class as a hash:
 DaysOfWeek::getConstants()
 ```
 
+You may also get all the keys in your class as an array:
+
+```php
+DaysOfWeek::getKeys();
+DaysOfWeek::getKeys('strtolower'); // Will call `array_map` with the given callback.
+```
+
 ### Advanced usage
 
 If you need to get the constants from a class you cannot modify, or from an
