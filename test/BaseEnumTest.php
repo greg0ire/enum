@@ -1,4 +1,5 @@
 <?php
+
 namespace Greg0ire\Enum\Tests;
 
 use Greg0ire\Enum\BaseEnum;
@@ -39,10 +40,10 @@ class BaseEnumTest extends \PHPUnit_Framework_TestCase
 {
     public function testDummyGetConstants()
     {
-        $this->assertEquals(
+        $this->assertSame(
             array(
-                'FIRST'  => 42,
-                'SECOND' => 'some_value'
+                'FIRST' => 42,
+                'SECOND' => 'some_value',
             ),
             DummyEnum::getConstants()
         );
@@ -50,11 +51,11 @@ class BaseEnumTest extends \PHPUnit_Framework_TestCase
 
     public function testFooGetConstants()
     {
-        $this->assertEquals(
+        $this->assertSame(
             array(
-                'GOD'    => 'Dieu',
-                'CHUCK'  => 'Chuck Norris',
-                'GUITRY' => 'Sacha Guitry'
+                'GOD' => 'Dieu',
+                'CHUCK' => 'Chuck Norris',
+                'GUITRY' => 'Sacha Guitry',
             ),
             FooEnum::getConstants()
         );
@@ -62,13 +63,13 @@ class BaseEnumTest extends \PHPUnit_Framework_TestCase
 
     public function testAllGetConstants()
     {
-        $this->assertEquals(
+        $this->assertSame(
             array(
-                'originally.GOD'                        => 'Dieu',
-                'originally.CHUCK'                      => 'Chuck Norris',
-                'originally.GUITRY'                     => 'Sacha Guitry',
-                'Greg0ire\Enum\Tests\DummyEnum::FIRST'  => 42,
-                'Greg0ire\Enum\Tests\DummyEnum::SECOND' => 'some_value'
+                'originally.GOD' => 'Dieu',
+                'originally.CHUCK' => 'Chuck Norris',
+                'originally.GUITRY' => 'Sacha Guitry',
+                'Greg0ire\Enum\Tests\DummyEnum::FIRST' => 42,
+                'Greg0ire\Enum\Tests\DummyEnum::SECOND' => 'some_value',
             ),
             AllEnum::getConstants()
         );
@@ -76,20 +77,20 @@ class BaseEnumTest extends \PHPUnit_Framework_TestCase
 
     public function testFooGetKeys()
     {
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'GOD',
                 'CHUCK',
-                'GUITRY'
+                'GUITRY',
             ),
             FooEnum::getKeys()
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'god',
                 'chuck',
-                'guitry'
+                'guitry',
             ),
             FooEnum::getKeys('strtolower')
         );
