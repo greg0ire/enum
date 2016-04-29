@@ -20,7 +20,6 @@
         "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "suggest": {
-        "greg0ire/enum-bundle": "Provides integration with Symfony2",
         "symfony/form": "To use enum form type",
         "symfony/validator": "To use enum validator"
     },
