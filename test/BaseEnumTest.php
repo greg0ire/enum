@@ -2,39 +2,9 @@
 
 namespace Greg0ire\Enum\Tests;
 
-use Greg0ire\Enum\BaseEnum;
-
-final class DummyEnum extends BaseEnum
-{
-    const FIRST = 42,
-        SECOND = 'some_value';
-}
-
-interface FooInterface
-{
-    const GOD = 'Dieu',
-        CHUCK = 'Chuck Norris',
-        GUITRY = 'Sacha Guitry';
-}
-
-final class FooEnum extends BaseEnum
-{
-    protected static function getEnumTypes()
-    {
-        return array('Greg0ire\Enum\Tests\FooInterface');
-    }
-}
-
-final class AllEnum extends BaseEnum
-{
-    protected static function getEnumTypes()
-    {
-        return array(
-            'originally' => 'Greg0ire\Enum\Tests\FooInterface',
-            'Greg0ire\Enum\Tests\DummyEnum',
-        );
-    }
-}
+use Greg0ire\Enum\Tests\Fixtures\AllEnum;
+use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
+use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 
 class BaseEnumTest extends \PHPUnit_Framework_TestCase
 {
@@ -68,8 +38,8 @@ class BaseEnumTest extends \PHPUnit_Framework_TestCase
                 'originally.GOD' => 'Dieu',
                 'originally.CHUCK' => 'Chuck Norris',
                 'originally.GUITRY' => 'Sacha Guitry',
-                'Greg0ire\Enum\Tests\DummyEnum::FIRST' => 42,
-                'Greg0ire\Enum\Tests\DummyEnum::SECOND' => 'some_value',
+                'Greg0ire\Enum\Tests\Fixtures\DummyEnum::FIRST' => 42,
+                'Greg0ire\Enum\Tests\Fixtures\DummyEnum::SECOND' => 'some_value',
             ),
             AllEnum::getConstants()
         );
