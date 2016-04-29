@@ -16,21 +16,21 @@ abstract class BaseEnum
     final public static function getConstants()
     {
         $enumTypes = static::getEnumTypes();
-        $enums     = array();
+        $enums = array();
 
         if (!is_array($enumTypes)) {
             $enumTypes = array($enumTypes);
         }
         foreach ($enumTypes as $key => $enumType) {
-            $cacheKey = is_integer($key) ? $enumType : $key;
+            $cacheKey = is_int($key) ? $enumType : $key;
 
             if (!isset(self::$constCache[$cacheKey])) {
-                $reflect                     = new \ReflectionClass($enumType);
+                $reflect = new \ReflectionClass($enumType);
                 self::$constCache[$cacheKey] = $reflect->getConstants();
             }
             if (count($enumTypes) > 1) {
                 foreach (self::$constCache[$cacheKey] as $subKey => $value) {
-                    $subKey         = $cacheKey . (is_integer($key) ? '::' : '.') . $subKey;
+                    $subKey = $cacheKey.(is_int($key) ? '::' : '.').$subKey;
                     $enums[$subKey] = $value;
                 }
             } else {
@@ -62,9 +62,9 @@ abstract class BaseEnum
     /**
      * Checks whether a constant with this name is defined.
      *
-     * @param string  $name   the name of the constant
+     * @param string $name the name of the constant
      *
-     * @return boolean the result of the test
+     * @return bool the result of the test
      */
     final public static function isValidName($name)
     {
@@ -78,7 +78,6 @@ abstract class BaseEnum
      * @param bool       $strict check the types of the value in the values
      *
      * @return bool the result of the test
-     *
      */
     final public static function isValidValue($value, $strict = true)
     {
@@ -88,7 +87,7 @@ abstract class BaseEnum
     }
 
     /**
-     * Adds possibility several classes together
+     * Adds possibility several classes together.
      *
      * @return array
      */
