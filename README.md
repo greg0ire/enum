@@ -167,6 +167,8 @@ $object = new MyClass(42);
 $violations = $validator->validate($object);
 ```
 
+Note: You will have to get `doctrine/annotations` and `doctrine/cache` packages to get it working.
+
 ## Contributing
 
 see [CONTRIBUTING.md][1]
