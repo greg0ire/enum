@@ -35,11 +35,11 @@ final class Enum extends Choice
                 'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
             );
         }
-        $this->choices = call_user_func(array($this->class, 'getConstants'));
+        $this->choices = call_user_func([$this->class, 'getConstants']);
 
         if ($this->showKeys) {
             $keysMessage = 'Valid '.$this->class.' constant keys are: '
-                .implode(', ', call_user_func(array($this->class, 'getKeys'))).'.';
+                .implode(', ', call_user_func([$this->class, 'getKeys'])).'.';
             $this->message .= ' '.$keysMessage;
             $this->multipleMessage .= ' '.$keysMessage;
         }
@@ -66,6 +66,6 @@ final class Enum extends Choice
      */
     public function getRequiredOptions()
     {
-        return array('class');
+        return ['class'];
     }
 }

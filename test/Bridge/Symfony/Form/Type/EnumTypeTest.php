@@ -12,9 +12,9 @@ final class EnumTypeTest extends TypeTestCase
 {
     public function testEnumChoices()
     {
-        $view = $this->factory->create($this->getEnumType(), null, array(
+        $view = $this->factory->create($this->getEnumType(), null, [
             'class' => 'Greg0ire\Enum\Tests\Fixtures\DummyEnum',
-        ))->createView();
+        ])->createView();
 
         $this->assertSame('42', $view->vars['choices'][0]->value);
         $this->assertSame('some_value', $view->vars['choices'][1]->value);
@@ -26,10 +26,10 @@ final class EnumTypeTest extends TypeTestCase
 
     public function testEnumChoicesClassPrefix()
     {
-        $view = $this->factory->create($this->getEnumType(), null, array(
+        $view = $this->factory->create($this->getEnumType(), null, [
             'class' => 'Greg0ire\Enum\Tests\Fixtures\DummyEnum',
             'prefix_label_with_class' => true,
-        ))->createView();
+        ])->createView();
 
         $this->assertSame('greg0ire_enum_tests_fixtures_dummy_enum_first', $view->vars['choices'][0]->label);
         $this->assertSame('greg0ire_enum_tests_fixtures_dummy_enum_second', $view->vars['choices'][1]->label);
@@ -47,20 +47,20 @@ final class EnumTypeTest extends TypeTestCase
             'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
         );
 
-        $this->factory->create($this->getEnumType(), null, array(
+        $this->factory->create($this->getEnumType(), null, [
             'class' => $class,
-        ));
+        ]);
 
         $this->builder->getForm();
     }
 
     public function getInvalidEnums()
     {
-        return array(
-            array('Greg0ire\Enum\Tests\Fixtures\FooInterface'),
-            array('\StdClass'),
-            array('This\Does\Not\Exist\At\All'),
-        );
+        return [
+            ['Greg0ire\Enum\Tests\Fixtures\FooInterface'],
+            ['\StdClass'],
+            ['This\Does\Not\Exist\At\All'],
+        ];
     }
 
     private function getEnumType()

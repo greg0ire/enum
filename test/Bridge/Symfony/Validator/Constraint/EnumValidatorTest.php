@@ -60,10 +60,10 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
 
     public function testInvalidValueWithShowKeys()
     {
-        $this->validator->validate(1337, new Enum(array(
+        $this->validator->validate(1337, new Enum([
             'class' => 'Greg0ire\Enum\Tests\Fixtures\DummyEnum',
             'showKeys' => true,
-        )));
+        ]));
 
         $this->buildViolation('The value you selected is not a valid choice. '
             .'Valid Greg0ire\Enum\Tests\Fixtures\DummyEnum constant keys are: FIRST, SECOND.')

@@ -11,10 +11,10 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
     public function testDummyGetConstants()
     {
         $this->assertSame(
-            array(
+            [
                 'FIRST' => 42,
                 'SECOND' => 'some_value',
-            ),
+            ],
             DummyEnum::getConstants()
         );
     }
@@ -22,11 +22,11 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
     public function testFooGetConstants()
     {
         $this->assertSame(
-            array(
+            [
                 'GOD' => 'Dieu',
                 'CHUCK' => 'Chuck Norris',
                 'GUITRY' => 'Sacha Guitry',
-            ),
+            ],
             FooEnum::getConstants()
         );
     }
@@ -34,13 +34,13 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
     public function testAllGetConstants()
     {
         $this->assertSame(
-            array(
+            [
                 'originally.GOD' => 'Dieu',
                 'originally.CHUCK' => 'Chuck Norris',
                 'originally.GUITRY' => 'Sacha Guitry',
                 'Greg0ire\Enum\Tests\Fixtures\DummyEnum::FIRST' => 42,
                 'Greg0ire\Enum\Tests\Fixtures\DummyEnum::SECOND' => 'some_value',
-            ),
+            ],
             AllEnum::getConstants()
         );
     }
@@ -48,20 +48,20 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
     public function testFooGetKeys()
     {
         $this->assertSame(
-            array(
+            [
                 'GOD',
                 'CHUCK',
                 'GUITRY',
-            ),
+            ],
             FooEnum::getKeys()
         );
 
         $this->assertSame(
-            array(
+            [
                 'god',
                 'chuck',
                 'guitry',
-            ),
+            ],
             FooEnum::getKeys('strtolower')
         );
     }
