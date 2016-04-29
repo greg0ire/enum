@@ -3,7 +3,9 @@
 namespace Greg0ire\Enum\Tests\Bridge\Symfony\Validator\Constraint;
 
 use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum;
+use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
+use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\ChoiceValidator;
 use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
@@ -34,6 +36,14 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
     {
         $this->validator->validate(DummyEnum::FIRST, new Enum('Greg0ire\Enum\Tests\Fixtures\DummyEnum'));
         $this->validator->validate(DummyEnum::SECOND, new Enum('Greg0ire\Enum\Tests\Fixtures\DummyEnum'));
+
+        foreach (FooEnum::getConstants() as $value) {
+            $this->validator->validate($value, new Enum('Greg0ire\Enum\Tests\Fixtures\FooEnum'));
+        }
+
+        foreach (AllEnum::getConstants() as $value) {
+            $this->validator->validate($value, new Enum('Greg0ire\Enum\Tests\Fixtures\AllEnum'));
+        }
 
         $this->assertNoViolation();
     }
