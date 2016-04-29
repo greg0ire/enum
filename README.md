@@ -120,7 +120,12 @@ final class MyEnum extends AbstractEnum
 }
 ```
 
-### Symfony validator
+### Integration with other libraries
+
+`greg0ire/enum` integrates with other libraries. The list is available in the
+`suggest` section of the Composer dependency manifest.
+
+#### Symfony validator
 
 This package provides a "ready to use" symfony validator.
 You have to require the `symfony/validator` package to get it working.
@@ -165,6 +170,25 @@ $validator = Validation::createValidatorBuilder()
 $object = new MyClass(42);
 
 $violations = $validator->validate($object);
+```
+
+Note: You will have to get `doctrine/annotations` and `doctrine/cache` packages to get it working.
+
+#### Symfony form
+
+This package provides a "ready to use" symfony form type.
+You have to require the `symfony/form` package to get it working.
+
+```php
+use Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType;
+use Symfony\Component\Form\Forms;
+use Your\Namespace\EnumClass;
+
+$formFactory = Forms::createFormFactory();
+
+$view = $this->factory->create(EnumType::class, null, array(
+    'class' => EnumClass::class,
+))->createView();
 ```
 
 ## Contributing
