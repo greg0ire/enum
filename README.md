@@ -169,6 +169,23 @@ $violations = $validator->validate($object);
 
 Note: You will have to get `doctrine/annotations` and `doctrine/cache` packages to get it working.
 
+### Symfony form
+
+This package provides a "ready to use" symfony form type.
+You have to require the `symfony/form` package to get it working.
+
+```php
+use Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType;
+use Symfony\Component\Form\Forms;
+use Your\Namespace\EnumClass;
+
+$formFactory = Forms::createFormFactory();
+
+$view = $this->factory->create(EnumType::class, null, array(
+    'class' => EnumClass::class,
+))->createView();
+```
+
 ## Contributing
 
 see [CONTRIBUTING.md][1]
