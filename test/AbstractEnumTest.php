@@ -6,7 +6,7 @@ use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 
-class BaseEnumTest extends \PHPUnit_Framework_TestCase
+class AbstractEnumTest extends \PHPUnit_Framework_TestCase
 {
     public function testDummyGetConstants()
     {
