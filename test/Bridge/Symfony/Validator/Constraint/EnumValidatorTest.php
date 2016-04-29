@@ -17,14 +17,14 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
 {
     public function testNullIsValid()
     {
-        $this->validator->validate(null, new Enum('Greg0ire\Enum\Tests\Fixtures\DummyEnum'));
+        $this->validator->validate(null, new Enum(DummyEnum::class));
 
         $this->assertNoViolation();
     }
 
     public function testBlankButStringIsInvalid()
     {
-        $this->validator->validate(' ', new Enum('Greg0ire\Enum\Tests\Fixtures\DummyEnum'));
+        $this->validator->validate(' ', new Enum(DummyEnum::class));
 
         $this->buildViolation('The value you selected is not a valid choice.')
             ->setParameter('{{ value }}', '" "')
@@ -34,15 +34,15 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
 
     public function testValidValues()
     {
-        $this->validator->validate(DummyEnum::FIRST, new Enum('Greg0ire\Enum\Tests\Fixtures\DummyEnum'));
-        $this->validator->validate(DummyEnum::SECOND, new Enum('Greg0ire\Enum\Tests\Fixtures\DummyEnum'));
+        $this->validator->validate(DummyEnum::FIRST, new Enum(DummyEnum::class));
+        $this->validator->validate(DummyEnum::SECOND, new Enum(DummyEnum::class));
 
         foreach (FooEnum::getConstants() as $value) {
-            $this->validator->validate($value, new Enum('Greg0ire\Enum\Tests\Fixtures\FooEnum'));
+            $this->validator->validate($value, new Enum(FooEnum::class));
         }
 
         foreach (AllEnum::getConstants() as $value) {
-            $this->validator->validate($value, new Enum('Greg0ire\Enum\Tests\Fixtures\AllEnum'));
+            $this->validator->validate($value, new Enum(AllEnum::class));
         }
 
         $this->assertNoViolation();
@@ -50,7 +50,7 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
 
     public function testInvalidValue()
     {
-        $this->validator->validate(1337, new Enum('Greg0ire\Enum\Tests\Fixtures\DummyEnum'));
+        $this->validator->validate(1337, new Enum(DummyEnum::class));
 
         $this->buildViolation('The value you selected is not a valid choice.')
             ->setParameter('{{ value }}', '1337')
@@ -61,12 +61,12 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
     public function testInvalidValueWithShowKeys()
     {
         $this->validator->validate(1337, new Enum(array(
-            'class' => 'Greg0ire\Enum\Tests\Fixtures\DummyEnum',
+            'class' => DummyEnum::class,
             'showKeys' => true,
         )));
 
         $this->buildViolation('The value you selected is not a valid choice. '
-            .'Valid Greg0ire\Enum\Tests\Fixtures\DummyEnum constant keys are: FIRST, SECOND.')
+            .'Valid '.DummyEnum::class.' constant keys are: FIRST, SECOND.')
             ->setParameter('{{ value }}', '1337')
             ->setCode(Choice::NO_SUCH_CHOICE_ERROR)
             ->assertRaised();
