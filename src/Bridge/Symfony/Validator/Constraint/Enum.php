@@ -2,7 +2,9 @@
 
 namespace Greg0ire\Enum\Bridge\Symfony\Validator\Constraint;
 
+use Greg0ire\Enum\AbstractEnum;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\ChoiceValidator;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 /**
@@ -30,9 +32,9 @@ final class Enum extends Choice
     {
         parent::__construct($options);
 
-        if (!is_a($this->class, 'Greg0ire\Enum\AbstractEnum', true)) {
+        if (!is_a($this->class, AbstractEnum::class, true)) {
             throw new ConstraintDefinitionException(
-                'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
+                'The option "class" must be a class that inherits from '.AbstractEnum::class
             );
         }
         $this->choices = call_user_func([$this->class, 'getConstants']);
@@ -50,7 +52,7 @@ final class Enum extends Choice
      */
     public function validatedBy()
     {
-        return 'Symfony\Component\Validator\Constraints\ChoiceValidator';
+        return ChoiceValidator::class;
     }
 
     /**

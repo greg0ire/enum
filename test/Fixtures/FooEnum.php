@@ -8,6 +8,6 @@ final class FooEnum extends AbstractEnum
 {
     protected static function getEnumTypes()
     {
-        return ['Greg0ire\Enum\Tests\Fixtures\FooInterface'];
+        return [FooInterface::class];
     }
 }
