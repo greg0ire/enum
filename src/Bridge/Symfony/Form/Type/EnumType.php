@@ -37,7 +37,7 @@ final class EnumType extends AbstractType
         $resolver->setDefault('choices', function (Options $options) {
             $class = $options['class'];
 
-            $keys = call_user_func(array($class, 'getKeys'), 'strtolower');
+            $keys = call_user_func([$class, 'getKeys'], 'strtolower');
             if ($options['prefix_label_with_class']) {
                 array_walk($keys, function (&$key) use ($class) {
                     $classKey = str_replace('\\', '_', Inflector::tableize($class));
@@ -45,7 +45,7 @@ final class EnumType extends AbstractType
                 });
             }
 
-            $choices = array_combine($keys, call_user_func(array($class, 'getConstants')));
+            $choices = array_combine($keys, call_user_func([$class, 'getConstants']));
             // SF <3.1 BC
             if ($options->offsetExists('choices_as_values') && false === $options['choices_as_values']) {
                 return array_flip($choices);

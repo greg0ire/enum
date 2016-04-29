@@ -1,8 +1,8 @@
 preset: symfony
 
 enabled:
-  - long_array_syntax
   - newline_after_open_tag
   - ordered_use
   - php_unit_construct
   - php_unit_strict
+  - short_array_syntax

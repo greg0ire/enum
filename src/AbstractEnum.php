@@ -8,7 +8,7 @@ namespace Greg0ire\Enum;
  */
 abstract class AbstractEnum
 {
-    private static $constCache = array();
+    private static $constCache = [];
 
     /**
      * Uses reflection to find the constants defined in the class and cache
@@ -20,10 +20,10 @@ abstract class AbstractEnum
     final public static function getConstants()
     {
         $enumTypes = static::getEnumTypes();
-        $enums = array();
+        $enums = [];
 
         if (!is_array($enumTypes)) {
-            $enumTypes = array($enumTypes);
+            $enumTypes = [$enumTypes];
         }
         foreach ($enumTypes as $key => $enumType) {
             $cacheKey = is_int($key) ? $enumType : $key;
@@ -97,6 +97,6 @@ abstract class AbstractEnum
      */
     protected static function getEnumTypes()
     {
-        return array(get_called_class());
+        return [get_called_class()];
     }
 }

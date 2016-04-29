@@ -18,11 +18,11 @@ final class EnumTest extends \PHPUnit_Framework_TestCase
 
     public function getValidEnums()
     {
-        return array(
-            array('Greg0ire\Enum\Tests\Fixtures\AllEnum'),
-            array('Greg0ire\Enum\Tests\Fixtures\DummyEnum'),
-            array('Greg0ire\Enum\Tests\Fixtures\FooEnum'),
-        );
+        return [
+            ['Greg0ire\Enum\Tests\Fixtures\AllEnum'],
+            ['Greg0ire\Enum\Tests\Fixtures\DummyEnum'],
+            ['Greg0ire\Enum\Tests\Fixtures\FooEnum'],
+        ];
     }
 
     /**
@@ -37,10 +37,10 @@ final class EnumTest extends \PHPUnit_Framework_TestCase
 
     public function getInvalidEnums()
     {
-        return array(
-            array('Greg0ire\Enum\Tests\Fixtures\FooInterface'),
-            array('\StdClass'),
-            array('This\Does\Not\Exist\At\All'),
-        );
+        return [
+            ['Greg0ire\Enum\Tests\Fixtures\FooInterface'],
+            ['\StdClass'],
+            ['This\Does\Not\Exist\At\All'],
+        ];
     }
 }
