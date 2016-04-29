@@ -2,9 +2,9 @@
 
 namespace Greg0ire\Enum\Tests\Fixtures;
 
-use Greg0ire\Enum\BaseEnum;
+use Greg0ire\Enum\AbstractEnum;
 
-final class FooEnum extends BaseEnum
+final class FooEnum extends AbstractEnum
 {
     protected static function getEnumTypes()
     {

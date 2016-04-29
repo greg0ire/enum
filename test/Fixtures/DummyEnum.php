@@ -2,9 +2,9 @@
 
 namespace Greg0ire\Enum\Tests\Fixtures;
 
-use Greg0ire\Enum\BaseEnum;
+use Greg0ire\Enum\AbstractEnum;
 
-final class DummyEnum extends BaseEnum
+final class DummyEnum extends AbstractEnum
 {
     const FIRST = 42,
         SECOND = 'some_value';

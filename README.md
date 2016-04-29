@@ -13,13 +13,13 @@ enum classes.
 
 ### Basic usage
 
-Extend the `Greg0ire\Enum\BaseEnum`, define your enum key values as constants,
+Extend the `Greg0ire\Enum\AbstractEnum`, define your enum key values as constants,
 and Bob's your uncle. You can make the class abstract or final, as you see fit.
 
 ```php
-use Greg0ire\Enum\BaseEnum;
+use Greg0ire\Enum\AbstractEnum;
 
-final class DaysOfWeek extends BaseEnum {
+final class DaysOfWeek extends AbstractEnum {
     const Sunday = 0;
     const Monday = 1;
     const Tuesday = 2;
@@ -61,7 +61,7 @@ DaysOfWeek::getKeys('strtolower'); // Will call `array_map` with the given callb
 
 If you need to get the constants from a class you cannot modify, or from an
 interface, or even from several classes / interfaces, you may override
-`BaseEnum::getEnumTypes()`.
+`AbstractEnum::getEnumTypes()`.
 
 For example, if you have the following class and interface :
 
@@ -88,9 +88,9 @@ interface SomeInterface
 You can get all three constants by creating this Enum :
 
 ```php
-use Greg0ire\Enum\BaseEnum;
+use Greg0ire\Enum\AbstractEnum;
 
-final class MyEnum extends BaseEnum
+final class MyEnum extends AbstractEnum
 {
     protected static function getEnumTypes()
     {
@@ -106,9 +106,9 @@ Alternatively, you can specify a prefix for each type to avoid getting FQCNs in
 the hash keys.
 
 ```php
-use Greg0ire\Enum\BaseEnum;
+use Greg0ire\Enum\AbstractEnum;
 
-final class MyEnum extends BaseEnum
+final class MyEnum extends AbstractEnum
 {
     protected static function getEnumTypes()
     {
