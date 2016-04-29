@@ -32,7 +32,7 @@ final class Enum extends Choice
 
         if (!is_a($this->class, 'Greg0ire\Enum\AbstractEnum', true)) {
             throw new ConstraintDefinitionException(
-                'The option "enumClass" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
+                'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
             );
         }
         $this->choices = call_user_func(array($this->class, 'getConstants'));
