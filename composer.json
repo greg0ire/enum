@@ -24,6 +24,11 @@
             "Greg0ire\\Enum\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Greg0ire\\Enum\\Tests\\": "test"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.x-dev"
