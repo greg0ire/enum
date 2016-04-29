@@ -9,8 +9,8 @@ final class AllEnum extends AbstractEnum
     protected static function getEnumTypes()
     {
         return array(
-            'originally' => 'Greg0ire\Enum\Tests\Fixtures\FooInterface',
-            'Greg0ire\Enum\Tests\Fixtures\DummyEnum',
+            'originally' => FooInterface::class,
+            DummyEnum::class,
         );
     }
 }
