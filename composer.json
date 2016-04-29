@@ -2,13 +2,6 @@
     "name": "greg0ire/enum",
     "description": "work around the missing enum type in php",
     "keywords": ["enum", "enumeration"],
-    "require-dev": {
-        "phpunit/phpunit": "~4.1",
-        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
-    },
-    "require": {
-        "php": "^5.6 || ^7.0"
-    },
     "license": "CC-BY-SA-3.0",
     "authors": [
         {
@@ -16,8 +9,20 @@
             "email": "postmaster@greg0ire.fr"
         }
     ],
-    "config":{
-        "bin-dir": "bin"
+    "require": {
+        "php": "^5.6 || ^7.0"
+    },
+    "require-dev": {
+        "symfony/validator": "^2.7 || ^3.0",
+        "phpunit/phpunit": "~4.1",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
+    },
+    "suggest": {
+        "greg0ire/enum-bundle": "Provides integration with Symfony2",
+        "symfony/validator": "To use enum validator"
+    },
+    "conflict": {
+        "symfony/validator": "<2.7 || >=4.0"
     },
     "autoload": {
         "psr-4": {
@@ -29,13 +34,13 @@
             "Greg0ire\\Enum\\Tests\\": "test"
         }
     },
+    "config":{
+        "bin-dir": "bin"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.x-dev",
             "dev-unstable": "3.x-dev"
         }
-    },
-    "suggest": {
-        "greg0ire/enum-bundle": "Provides integration with Symfony2"
     }
 }

@@ -120,6 +120,53 @@ final class MyEnum extends AbstractEnum
 }
 ```
 
+### Symfony validator
+
+This package provides a "ready to use" symfony validator.
+You have to require the `symfony/validator` package to get it working.
+
+```php
+use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum;
+use Symfony\Component\Validator\Validation;
+use Your\Namespace\EnumClass;
+
+$validator = Validation::createValidator();
+
+$violations = $validator->validateValue(42, new Enum(EnumClass::class));
+// You can also show the constants keys on the error message:
+$violations = $validator->validateValue(42, new Enum(['class' => EnumClass::class, 'showKeys' => true]));
+```
+
+Another example with annotations:
+
+```php
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum;
+use Symfony\Component\Validator\Validation;
+
+class MyClass
+{
+    /**
+     * @EnumClass("Your\Namespace\EnumClass")
+     */
+    private $dummy;
+
+    public function __construct($dummy)
+    {
+        $this->dummy = $dummy
+    }
+}
+
+AnnotationRegistry::registerLoader('class_exists');
+$validator = Validation::createValidatorBuilder()
+    ->enableAnnotationMapping()
+    ->getValidator();
+
+$object = new MyClass(42);
+
+$violations = $validator->validate($object);
+```
+
 ## Contributing
 
 see [CONTRIBUTING.md][1]
