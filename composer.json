@@ -13,11 +13,16 @@
         "php": "^5.3 || ^7.0"
     },
     "require-dev": {
+        "symfony/validator": "^2.7 || ^3.0",
         "phpunit/phpunit": "~4.1",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "suggest": {
-        "greg0ire/enum-bundle": "Provides integration with Symfony2"
+        "greg0ire/enum-bundle": "Provides integration with Symfony2",
+        "symfony/validator": "To use enum validator"
+    },
+    "conflict": {
+        "symfony/validator": "<2.7 || >=4.0"
     },
     "autoload": {
         "psr-4": {
