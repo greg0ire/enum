@@ -3,6 +3,10 @@
 namespace Greg0ire\Enum\Tests\Bridge\Symfony\Form\Type;
 
 use Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType;
+use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
+use Greg0ire\Enum\Tests\Fixtures\FooInterface;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
@@ -13,7 +17,7 @@ final class EnumTypeTest extends TypeTestCase
     public function testEnumChoices()
     {
         $view = $this->factory->create($this->getEnumType(), null, [
-            'class' => 'Greg0ire\Enum\Tests\Fixtures\DummyEnum',
+            'class' => DummyEnum::class,
         ])->createView();
 
         $this->assertSame('42', $view->vars['choices'][0]->value);
@@ -27,7 +31,7 @@ final class EnumTypeTest extends TypeTestCase
     public function testEnumChoicesClassPrefix()
     {
         $view = $this->factory->create($this->getEnumType(), null, [
-            'class' => 'Greg0ire\Enum\Tests\Fixtures\DummyEnum',
+            'class' => DummyEnum::class,
             'prefix_label_with_class' => true,
         ])->createView();
 
@@ -43,7 +47,7 @@ final class EnumTypeTest extends TypeTestCase
     public function testInvalidEnums($class)
     {
         $this->setExpectedException(
-            'Symfony\Component\Form\Exception\LogicException',
+            LogicException::class,
             'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
         );
 
@@ -57,8 +61,8 @@ final class EnumTypeTest extends TypeTestCase
     public function getInvalidEnums()
     {
         return [
-            ['Greg0ire\Enum\Tests\Fixtures\FooInterface'],
-            ['\StdClass'],
+            [FooInterface::class],
+            [\StdClass::class],
             ['This\Does\Not\Exist\At\All'],
         ];
     }
@@ -66,10 +70,10 @@ final class EnumTypeTest extends TypeTestCase
     private function getEnumType()
     {
         // Symfony <2.8 BC
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+        if (!method_exists(AbstractType::class, 'getBlockPrefix')) {
             return new EnumType();
         }
 
-        return 'Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType';
+        return EnumType::class;
     }
 }

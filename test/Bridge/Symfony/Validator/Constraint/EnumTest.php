@@ -3,6 +3,10 @@
 namespace Greg0ire\Enum\Tests\Bridge\Symfony\Validator\Constraint;
 
 use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum;
+use Greg0ire\Enum\Tests\Fixtures\AllEnum;
+use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
+use Greg0ire\Enum\Tests\Fixtures\FooEnum;
+use Greg0ire\Enum\Tests\Fixtures\FooInterface;
 
 final class EnumTest extends \PHPUnit_Framework_TestCase
 {
@@ -19,9 +23,9 @@ final class EnumTest extends \PHPUnit_Framework_TestCase
     public function getValidEnums()
     {
         return [
-            ['Greg0ire\Enum\Tests\Fixtures\AllEnum'],
-            ['Greg0ire\Enum\Tests\Fixtures\DummyEnum'],
-            ['Greg0ire\Enum\Tests\Fixtures\FooEnum'],
+            [AllEnum::class],
+            [DummyEnum::class],
+            [FooEnum::class],
         ];
     }
 
@@ -38,8 +42,8 @@ final class EnumTest extends \PHPUnit_Framework_TestCase
     public function getInvalidEnums()
     {
         return [
-            ['Greg0ire\Enum\Tests\Fixtures\FooInterface'],
-            ['\StdClass'],
+            [FooInterface::class],
+            [\StdClass::class],
             ['This\Does\Not\Exist\At\All'],
         ];
     }

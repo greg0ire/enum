@@ -3,9 +3,11 @@
 namespace Greg0ire\Enum\Bridge\Symfony\Form\Type;
 
 use Doctrine\Common\Inflector\Inflector;
+use Greg0ire\Enum\AbstractEnum;
 use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\LogicException;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,10 +24,8 @@ final class EnumType extends AbstractType
         $resolver->setRequired('class');
         $resolver->setAllowedTypes('class', 'string');
         $resolver->setNormalizer('class', function (Options $options, $class) {
-            if (!is_a($class, 'Greg0ire\Enum\AbstractEnum', true)) {
-                throw new LogicException(
-                    'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
-                );
+            if (!is_a($class, AbstractEnum::class, true)) {
+                throw new LogicException('The option "class" must be a class that inherits from '.AbstractEnum::class);
             }
 
             return $class;
@@ -79,10 +79,10 @@ final class EnumType extends AbstractType
     public function getParent()
     {
         // Symfony <2.8 BC
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+        if (!method_exists(AbstractType::class, 'getBlockPrefix')) {
             return 'choice';
         }
 
-        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
+        return ChoiceType::class;
     }
 }
