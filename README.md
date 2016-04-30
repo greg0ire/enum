@@ -140,6 +140,8 @@ $validator = Validation::createValidator();
 $violations = $validator->validateValue(42, new Enum(EnumClass::class));
 // You can also show the constants keys on the error message:
 $violations = $validator->validateValue(42, new Enum(['class' => EnumClass::class, 'showKeys' => true]));
+// Enum constraint inherits from Choice constraint. You can use inherited options too:
+$violations = $validator->validateValue(42, new Enum(['class' => EnumClass::class, 'strict' => true]));
 ```
 
 Another example with annotations:
