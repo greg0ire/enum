@@ -14,10 +14,12 @@ abstract class AbstractEnum
      * Uses reflection to find the constants defined in the class and cache
      * them in a local property for performance, before returning them.
      *
+     * @param callable|null $keysCallback
+     *
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget
      */
-    final public static function getConstants()
+    final public static function getConstants($keysCallback = null)
     {
         $enumTypes = static::getEnumTypes();
         $enums = [];
@@ -40,6 +42,10 @@ abstract class AbstractEnum
             } else {
                 $enums = self::$constCache[$cacheKey];
             }
+        }
+
+        if (null !== $keysCallback) {
+            return array_combine(static::getKeys($keysCallback), $enums);
         }
 
         return $enums;

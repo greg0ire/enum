@@ -47,7 +47,8 @@ DaysOfWeek::isValidValue('Friday');                  // false
 Additionally, you may get all the constants in your class as a hash:
 
 ```php
-DaysOfWeek::getConstants()
+DaysOfWeek::getConstants();
+DaysOfWeek::getConstants('strtolower'); // Will combine your values with `DaysOfWeek::getKeys($callback)`.
 ```
 
 You may also get all the keys in your class as an array:
@@ -140,6 +141,8 @@ $validator = Validation::createValidator();
 $violations = $validator->validateValue(42, new Enum(EnumClass::class));
 // You can also show the constants keys on the error message:
 $violations = $validator->validateValue(42, new Enum(['class' => EnumClass::class, 'showKeys' => true]));
+// Enum constraint inherits from Choice constraint. You can use inherited options too:
+$violations = $validator->validateValue(42, new Enum(['class' => EnumClass::class, 'strict' => true]));
 ```
 
 Another example with annotations:
