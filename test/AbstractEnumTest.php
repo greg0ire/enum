@@ -31,11 +31,11 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertSame(
-            array(
+            [
                 'god' => 'Dieu',
                 'chuck' => 'Chuck Norris',
                 'guitry' => 'Sacha Guitry',
-            ),
+            ],
             FooEnum::getConstants('strtolower')
         );
     }
@@ -54,13 +54,13 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertSame(
-            array(
+            [
                 'originally.god' => 'Dieu',
                 'originally.chuck' => 'Chuck Norris',
                 'originally.guitry' => 'Sacha Guitry',
                 'greg0ire\enum\tests\fixtures\dummyenum::first' => 42,
                 'greg0ire\enum\tests\fixtures\dummyenum::second' => 'some_value',
-            ),
+            ],
             AllEnum::getConstants('strtolower')
         );
     }
