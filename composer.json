@@ -42,8 +42,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev",
-            "dev-unstable": "3.x-dev"
+            "dev-master": "3.x-dev",
+            "dev-unstable": "4.x-dev"
         }
     }
 }
