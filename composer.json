@@ -1,5 +1,6 @@
 {
     "name": "greg0ire/enum",
+    "type": "library",
     "description": "work around the missing enum type in php",
     "keywords": ["enum", "enumeration", "Symfony", "validator", "form"],
     "license": "CC-BY-SA-3.0",
