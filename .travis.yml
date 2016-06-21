@@ -25,7 +25,7 @@ matrix:
 
 install:
   - composer global require sllh/composer-lint:@stable --prefer-dist --no-interaction
-  - composer update ${COMPOSER_OPTIONS}
+  - composer update ${COMPOSER_OPTIONS} --prefer-dist
 
 script:
   - composer validate
