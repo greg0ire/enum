@@ -49,6 +49,8 @@ Additionally, you may get all the constants in your class as a hash:
 ```php
 DaysOfWeek::getConstants();
 DaysOfWeek::getConstants('strtolower'); // Will combine your values with `DaysOfWeek::getKeys($callback)`.
+DaysOfWeek::getConstants('strtolower', true); // Values combine with `DaysOfWeek::getClassPrefixedKeys($callback)`.
+DaysOfWeek::getConstants('strtolower', true, '.'); // Same with `DaysOfWeek::getClassPrefixedKeys($callback, $separator)`.
 ```
 
 You may also get all the keys in your class as an array:
@@ -56,6 +58,14 @@ You may also get all the keys in your class as an array:
 ```php
 DaysOfWeek::getKeys();
 DaysOfWeek::getKeys('strtolower'); // Will call `array_map` with the given callback.
+```
+
+Or the key with the enum class prefix:
+
+```php
+DaysOfWeek::getClassPrefixedKeys();
+DaysOfWeek::getClassPrefixedKeys('strtolower'); // Will call `array_map` with the given callback.
+DaysOfWeek::getClassPrefixedKeys('strtolower', '.'); // Replace the namespace separator ('_' by default).
 ```
 
 ### Advanced usage

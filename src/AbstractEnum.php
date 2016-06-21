@@ -2,12 +2,19 @@
 
 namespace Greg0ire\Enum;
 
+use Doctrine\Common\Inflector\Inflector;
+
 /**
  * @author Grégoire Paris <postmaster@greg0ire.fr>
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
 abstract class AbstractEnum
 {
+    /**
+     * @var string
+     */
+    public static $defaultNamespaceSeparator = '_';
+
     private static $constCache = [];
 
     /**
@@ -15,12 +22,15 @@ abstract class AbstractEnum
      * them in a local property for performance, before returning them.
      *
      * @param callable|null $keysCallback
+     * @param bool          $classPrefixed      True if you want the enum class prefix on each keys, false otherwise.
+     * @param string        $namespaceSeparator Only relevant if $classPrefixed is set to true.
      *
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget
      */
-    final public static function getConstants($keysCallback = null)
+    final public static function getConstants($keysCallback = null, $classPrefixed = false, $namespaceSeparator = null)
     {
+        $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
         $enumTypes = static::getEnumTypes();
         $enums = [];
 
@@ -44,8 +54,13 @@ abstract class AbstractEnum
             }
         }
 
-        if (is_callable($keysCallback)) {
-            return array_combine(static::getKeys($keysCallback), $enums);
+        if (is_callable($keysCallback) || $classPrefixed) {
+            return array_combine(
+                $classPrefixed
+                    ? static::getClassPrefixedKeys($keysCallback, $namespaceSeparator)
+                    : static::getKeys($keysCallback),
+                $enums
+            );
         }
 
         return $enums;
@@ -63,6 +78,30 @@ abstract class AbstractEnum
         $keys = array_keys(static::getConstants());
 
         if (null !== $callback) {
+            return array_map($callback, $keys);
+        }
+
+        return $keys;
+    }
+
+    /**
+     * @param callable|null $callback           A callable function compatible with array_map
+     * @param string|null   $namespaceSeparator Choose which character should replace namespaces separation.
+     *                                          Example: With Foo\BarMagic enum class with '.' separator,
+     *                                          it will be converted to foo.bar_magic.YOUR_KEY
+     *
+     * @return string[]
+     */
+    final public static function getClassPrefixedKeys($callback = null, $namespaceSeparator = null)
+    {
+        $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
+        $classKey = str_replace('\\', $namespaceSeparator, Inflector::tableize(static::class));
+
+        $keys = static::getKeys(function ($key) use ($namespaceSeparator, $classKey) {
+            return $classKey.$namespaceSeparator.$key;
+        });
+
+        if (is_callable($callback)) {
             return array_map($callback, $keys);
         }
 
