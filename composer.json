@@ -17,7 +17,7 @@
     "require-dev": {
         "symfony/form": "^2.7 || ^3.0",
         "symfony/validator": "^2.7 || ^3.0",
-        "phpunit/phpunit": "~4.1",
+        "phpunit/phpunit": "^4.1",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "suggest": {
