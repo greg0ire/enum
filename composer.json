@@ -1,5 +1,6 @@
 {
     "name": "greg0ire/enum",
+    "type": "library",
     "description": "work around the missing enum type in php",
     "keywords": ["enum", "enumeration", "Symfony", "validator", "form"],
     "license": "CC-BY-SA-3.0",
@@ -14,10 +15,10 @@
         "doctrine/inflector": "^1.0"
     },
     "require-dev": {
+        "phpunit/phpunit": "^4.1",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "symfony/form": "^2.7 || ^3.0",
-        "symfony/validator": "^2.7 || ^3.0",
-        "phpunit/phpunit": "~4.1",
-        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
+        "symfony/validator": "^2.7 || ^3.0"
     },
     "suggest": {
         "symfony/form": "To use enum form type",
@@ -38,6 +39,7 @@
         }
     },
     "config":{
+        "sort-packages": true,
         "bin-dir": "bin"
     },
     "extra": {
