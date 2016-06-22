@@ -44,7 +44,7 @@ abstract class AbstractEnum
             }
         }
 
-        if (null !== $keysCallback) {
+        if (is_callable($keysCallback)) {
             return array_combine(static::getKeys($keysCallback), $enums);
         }
 
