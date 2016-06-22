@@ -47,7 +47,7 @@ final class EnumType extends AbstractType
 
             $choices = array_combine($keys, call_user_func([$class, 'getConstants']));
             // SF <3.1 BC
-            if ($options->offsetExists('choices_as_values') && false === $options['choices_as_values']) {
+            if ($options->offsetExists('choices_as_values') && !$options['choices_as_values']) {
                 return array_flip($choices);
             }
 
