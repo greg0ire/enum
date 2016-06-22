@@ -38,7 +38,7 @@
             "Greg0ire\\Enum\\Tests\\": "test"
         }
     },
-    "config":{
+    "config": {
         "sort-packages": true,
         "bin-dir": "bin"
     },
