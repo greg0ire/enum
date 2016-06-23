@@ -46,7 +46,7 @@ abstract class AbstractEnum
             }
             if (count($enumTypes) > 1) {
                 foreach (self::$constCache[$cacheKey] as $subKey => $value) {
-                    $subKey = $cacheKey . (is_int($key) ? '::' : '.') . $subKey;
+                    $subKey = $cacheKey.(is_int($key) ? '::' : '.').$subKey;
                     $enums[$subKey] = $value;
                 }
             } else {
@@ -98,7 +98,7 @@ abstract class AbstractEnum
         $classKey = str_replace('\\', $namespaceSeparator, Inflector::tableize(static::class));
 
         $keys = static::getKeys(function ($key) use ($namespaceSeparator, $classKey) {
-            return $classKey . $namespaceSeparator . $key;
+            return $classKey.$namespaceSeparator.$key;
         });
 
         if (is_callable($callback)) {
