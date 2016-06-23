@@ -34,9 +34,6 @@ abstract class AbstractEnum
         $enumTypes = static::getEnumTypes();
         $enums = [];
 
-        if (!is_array($enumTypes)) {
-            $enumTypes = [$enumTypes];
-        }
         foreach ($enumTypes as $key => $enumType) {
             $cacheKey = is_int($key) ? $enumType : $key;
 
