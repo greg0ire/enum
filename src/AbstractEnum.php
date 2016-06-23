@@ -135,7 +135,7 @@ abstract class AbstractEnum
     /**
      * Adds possibility several classes together.
      *
-     * @return array
+     * @return string[]
      */
     protected static function getEnumTypes()
     {
