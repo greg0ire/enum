@@ -23,7 +23,7 @@ final class EnumType extends AbstractType
         $resolver->setAllowedTypes('class', 'string');
         $resolver->setNormalizer('class', function (Options $options, $class) {
             if (!is_a($class, AbstractEnum::class, true)) {
-                throw new LogicException('The option "class" must be a class that inherits from '.AbstractEnum::class);
+                throw new LogicException('The option "class" must be a class that inherits from ' . AbstractEnum::class);
             }
 
             return $class;

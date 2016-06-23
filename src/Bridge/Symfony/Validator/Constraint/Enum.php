@@ -34,16 +34,16 @@ final class Enum extends Choice
 
         if (!is_a($this->class, AbstractEnum::class, true)) {
             throw new ConstraintDefinitionException(
-                'The option "class" must be a class that inherits from '.AbstractEnum::class
+                'The option "class" must be a class that inherits from ' . AbstractEnum::class
             );
         }
         $this->choices = call_user_func([$this->class, 'getConstants']);
 
         if ($this->showKeys) {
-            $keysMessage = 'Valid '.$this->class.' constant keys are: '
-                .implode(', ', call_user_func([$this->class, 'getKeys'])).'.';
-            $this->message .= ' '.$keysMessage;
-            $this->multipleMessage .= ' '.$keysMessage;
+            $keysMessage = 'Valid ' . $this->class . ' constant keys are: '
+                . implode(', ', call_user_func([$this->class, 'getKeys'])) . '.';
+            $this->message .= ' ' . $keysMessage;
+            $this->multipleMessage .= ' ' . $keysMessage;
         }
     }
 
