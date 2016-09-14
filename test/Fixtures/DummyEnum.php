@@ -6,6 +6,6 @@ use Greg0ire\Enum\AbstractEnum;
 
 final class DummyEnum extends AbstractEnum
 {
-    const FIRST = 42,
-        SECOND = 'some_value';
+    const FIRST = 42;
+    const SECOND = 'some_value';
 }
