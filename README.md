@@ -1,6 +1,6 @@
 # Enums
 
-This package holds a simple class that may be used as an ancestor for your
+ package holds a simple class that may be used as an ancestor for your
 enum classes.
 
 [![Build Status][3]](https://travis-ci.org/greg0ire/enum)
