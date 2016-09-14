@@ -38,6 +38,15 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
             ],
             FooEnum::getConstants('strtolower')
         );
+
+        $this->assertSame(
+            [
+                'greg0ire.enum.tests.fixtures.foo_enum.god' => 'Dieu',
+                'greg0ire.enum.tests.fixtures.foo_enum.chuck' => 'Chuck Norris',
+                'greg0ire.enum.tests.fixtures.foo_enum.guitry' => 'Sacha Guitry',
+            ],
+            FooEnum::getConstants('strtolower', true, '.')
+        );
     }
 
     public function testAllGetConstants()
@@ -83,6 +92,36 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
                 'guitry',
             ],
             FooEnum::getKeys('strtolower')
+        );
+    }
+
+    public function testFooGetClassPrefixedKeys()
+    {
+        $this->assertSame(
+            [
+                'greg0ire_enum_tests_fixtures_foo_enum_GOD',
+                'greg0ire_enum_tests_fixtures_foo_enum_CHUCK',
+                'greg0ire_enum_tests_fixtures_foo_enum_GUITRY',
+            ],
+            FooEnum::getClassPrefixedKeys()
+        );
+
+        $this->assertSame(
+            [
+                'greg0ire_enum_tests_fixtures_foo_enum_god',
+                'greg0ire_enum_tests_fixtures_foo_enum_chuck',
+                'greg0ire_enum_tests_fixtures_foo_enum_guitry',
+            ],
+            FooEnum::getClassPrefixedKeys('strtolower')
+        );
+
+        $this->assertSame(
+            [
+                'greg0ire.enum.tests.fixtures.foo_enum.god',
+                'greg0ire.enum.tests.fixtures.foo_enum.chuck',
+                'greg0ire.enum.tests.fixtures.foo_enum.guitry',
+            ],
+            FooEnum::getClassPrefixedKeys('strtolower', '.')
         );
     }
 

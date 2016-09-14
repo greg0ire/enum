@@ -2,9 +2,7 @@
 
 namespace Greg0ire\Enum\Bridge\Symfony\Form\Type;
 
-use Doctrine\Common\Inflector\Inflector;
 use Greg0ire\Enum\AbstractEnum;
-use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -37,13 +35,9 @@ final class EnumType extends AbstractType
         $resolver->setDefault('choices', function (Options $options) {
             $class = $options['class'];
 
-            $keys = call_user_func([$class, 'getKeys'], 'strtolower');
-            if ($options['prefix_label_with_class']) {
-                array_walk($keys, function (&$key) use ($class) {
-                    $classKey = str_replace('\\', '_', Inflector::tableize($class));
-                    $key = $classKey.'_'.$key;
-                });
-            }
+            $keys = $options['prefix_label_with_class']
+                ? call_user_func([$class, 'getClassPrefixedKeys'], 'strtolower')
+                : call_user_func([$class, 'getKeys'], 'strtolower');
 
             $choices = array_combine($keys, call_user_func([$class, 'getConstants']));
             // SF <3.1 BC

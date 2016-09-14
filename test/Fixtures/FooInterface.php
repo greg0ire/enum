@@ -4,7 +4,7 @@ namespace Greg0ire\Enum\Tests\Fixtures;
 
 interface FooInterface
 {
-    const GOD = 'Dieu',
-        CHUCK = 'Chuck Norris',
-        GUITRY = 'Sacha Guitry';
+    const GOD = 'Dieu';
+    const CHUCK = 'Chuck Norris';
+    const GUITRY = 'Sacha Guitry';
 }
