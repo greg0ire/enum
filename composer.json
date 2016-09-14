@@ -15,10 +15,14 @@
         "doctrine/inflector": "^1.0"
     },
     "require-dev": {
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7.6",
         "phpunit/phpunit": "^4.1",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "symfony/form": "^2.7 || ^3.0",
-        "symfony/validator": "^2.7 || ^3.0"
+        "symfony/framework-bundle": "^2.7 || ^3.0",
+        "symfony/twig-bundle": "^2.7 || ^3.0",
+        "symfony/validator": "^2.7 || ^3.0",
+        "twig/twig": "^1.24"
     },
     "suggest": {
         "symfony/form": "To use enum form type",

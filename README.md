@@ -49,6 +49,8 @@ Additionally, you may get all the constants in your class as a hash:
 ```php
 DaysOfWeek::getConstants();
 DaysOfWeek::getConstants('strtolower'); // Will combine your values with `DaysOfWeek::getKeys($callback)`.
+DaysOfWeek::getConstants('strtolower', true); // Values combine with `DaysOfWeek::getClassPrefixedKeys($callback)`.
+DaysOfWeek::getConstants('strtolower', true, '.'); // Same with `DaysOfWeek::getClassPrefixedKeys($callback, $separator)`.
 ```
 
 You may also get all the keys in your class as an array:
@@ -56,6 +58,14 @@ You may also get all the keys in your class as an array:
 ```php
 DaysOfWeek::getKeys();
 DaysOfWeek::getKeys('strtolower'); // Will call `array_map` with the given callback.
+```
+
+Or the key with the enum class prefix:
+
+```php
+DaysOfWeek::getClassPrefixedKeys();
+DaysOfWeek::getClassPrefixedKeys('strtolower'); // Will call `array_map` with the given callback.
+DaysOfWeek::getClassPrefixedKeys('strtolower', '.'); // Replace the namespace separator ('_' by default).
 ```
 
 ### Advanced usage
@@ -193,6 +203,53 @@ $view = $this->factory->create(EnumType::class, null, array(
     'class' => EnumClass::class,
 ))->createView();
 ```
+
+#### Twig extension
+
+This package comes with an `enum_label` filter, available thanks to the `EnumExtension` Twig class.
+You have to require the `twig/twig` package to get it working.
+
+The filter will try to return the constant label corresponding to the given value.
+
+It will try to translate it if possible. To enable translation, require the `symfony/translation` component
+and pass a `Symfony\Component\Translation\TranslationInterface` instance on the `EnumExtension` constructor.
+
+If translation is not available, you will have the default label with class prefixing.
+
+Usage:
+
+```twig
+{{ value|enum_label('Your\\Enum\\Class') }}
+{{ value|enum_label('Your\\Enum\\Class', 'another_domain') }} {# Change the translation domain #}
+{{ value|enum_label('Your\\Enum\\Class', false) }} {# Disable translation. In this case the class prefix wont be added #}
+{{ value|enum_label('Your\\Enum\\Class', false, true) }} {# Disable translation but keep class prefix #}
+{{ value|enum_label('Your\\Enum\\Class', false, true, '.') }} {# Disable translation but keep class prefix with a custom separator #}
+```
+
+##### Twig extension as a service
+
+On Symfony projects, the extension can be autoloaded.
+First, you have to require the `symfony/framework-bundle` and `symfony/twig-bundle` packages, or use Symfony fullstack.
+
+Then, register the bundle in the kernel of your application:
+
+``` php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Greg0ire\Enum\Bridge\Symfony\Bundle\Greg0ireEnumBundle(),
+    );
+
+    // ...
+
+    return $bundles
+}
+```
+
+That's all. You can now directly use the filter.
 
 ## Contributing
 
