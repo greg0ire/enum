@@ -29,8 +29,8 @@
         "symfony/validator": "To use enum validator"
     },
     "conflict": {
-        "symfony/form": "<2.7 || >=4.0",
-        "symfony/validator": "<2.7 || >=4.0"
+        "symfony/form": "<2.7 || >=4.0 <999",
+        "symfony/validator": "<2.7 || >=4.0 <999"
     },
     "autoload": {
         "psr-4": {

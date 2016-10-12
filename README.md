@@ -68,6 +68,14 @@ DaysOfWeek::getClassPrefixedKeys('strtolower'); // Will call `array_map` with th
 DaysOfWeek::getClassPrefixedKeys('strtolower', '.'); // Replace the namespace separator ('_' by default).
 ```
 
+If you would like to get the keys from a value:
+
+```php
+$key = DaysOfWeek::getKeysFromValue(1); // Monday will be assigned to $key
+```
+
+If you have many keys with the same value you will get an array, and a value otherwise.
+
 ### Advanced usage
 
 If you need to get the constants from a class you cannot modify, or from an
