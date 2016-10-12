@@ -4,6 +4,7 @@ namespace Greg0ire\Enum\Tests;
 
 use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
+use Greg0ire\Enum\Tests\Fixtures\DummyWithSameValuesEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 
 class AbstractEnumTest extends \PHPUnit_Framework_TestCase
@@ -135,5 +136,15 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(DummyEnum::isValidValue(42));
         $this->assertFalse(DummyEnum::isValidValue('42'));
+    }
+
+    public function testSimpleKeyFromValue()
+    {
+        $this->assertSame('FIRST', DummyEnum::getKeysFromValue(42));
+    }
+
+    public function testMultiKeysFromValue()
+    {
+        $this->assertSame(['FIRST', 'SECOND'], DummyWithSameValuesEnum::getKeysFromValue(42));
     }
 }
