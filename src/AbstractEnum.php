@@ -144,4 +144,24 @@ abstract class AbstractEnum
     {
         return [get_called_class()];
     }
+
+    /**
+     * Returns keys from a value.
+     *
+     * @param mixed $value
+     *
+     * @return string|string[]
+     */
+    public static function getKeysFromValue($value)
+    {
+        $keys = [];
+
+        foreach (static::getConstants() as $key => $item) {
+            if ($value === $item) {
+                $keys[] = $key;
+            }
+        }
+
+        return count($keys) === 1 ? current($keys) : $keys;
+    }
 }
