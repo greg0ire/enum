@@ -167,13 +167,13 @@ Another example with annotations:
 
 ```php
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum;
+use Greg0ire\Enum\Bridge\Symfony\Validator\Constraint\Enum as EnumAssert;
 use Symfony\Component\Validator\Validation;
 
 class MyClass
 {
     /**
-     * @EnumClass("Your\Namespace\EnumClass")
+     * @EnumAssert("Your\Namespace\EnumClass")
      */
     private $dummy;
 
