@@ -33,11 +33,16 @@ final class EnumExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testEnvironment()
     {
-        $twig = new \Twig_Environment();
+        $twig = new \Twig_Environment($this->createMock(\Twig_LoaderInterface::class));
         $twig->addExtension($this->extension);
 
-        $this->assertTrue($twig->hasExtension('greg0ire_enum'));
         $this->assertInstanceOf(\Twig_SimpleFilter::class, $twig->getFilter('enum_label'));
+
+        if (version_compare(\Twig_Environment::VERSION, '1.26.0') === -1) {
+            $this->assertTrue($twig->hasExtension('greg0ire_enum'));
+            return;
+        }
+        $this->assertTrue($twig->hasExtension(EnumExtension::class));
     }
 
     /**
