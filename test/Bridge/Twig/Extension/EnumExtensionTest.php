@@ -40,6 +40,7 @@ final class EnumExtensionTest extends \PHPUnit_Framework_TestCase
 
         if (version_compare(\Twig_Environment::VERSION, '1.26.0') === -1) {
             $this->assertTrue($this->hasExtension('gregoire_enum'));
+
             return;
         }
         $this->assertTrue($twig->hasExtension(EnumExtension::class));
