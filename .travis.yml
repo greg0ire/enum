@@ -26,14 +26,12 @@ matrix:
     - php: 7.1
       env: SYMFONY_VERSION=2.8.*
     - php: 7.1
-      env: SYMFONY_VERSION=3.0.*
-    - php: 7.1
       env: SYMFONY_VERSION=3.1.*
     - php: 7.1
-      env: SYMFONY_VERSION=3.2.*@dev
+      env: SYMFONY_VERSION=3.2.*
   allow_failures:
     - php: nightly
-    - env: SYMFONY_VERSION=3.2.*@dev
+    - env: SYMFONY_VERSION=3.3.*@dev
 
 install:
   - composer global require sllh/composer-lint:@stable --prefer-dist --no-interaction
