@@ -77,4 +77,40 @@ final class EnumExtensionTest extends \PHPUnit_Framework_TestCase
             'Without any available translation, the filter should just return the key.'
         );
     }
+
+    public function testGetConstants()
+    {
+        $this->assertSame(
+            [
+                'GOD' => 'Dieu',
+                'CHUCK' => 'Chuck Norris',
+                'GUITRY' => 'Sacha Guitry',
+            ],
+            $this->extension->getConstants(FooEnum::class)
+        );
+    }
+
+    public function testGetKeys()
+    {
+        $this->assertSame(
+            [
+                'GOD',
+                'CHUCK',
+                'GUITRY',
+            ],
+            $this->extension->getKeys(FooEnum::class)
+        );
+    }
+
+    public function testGetClassPrefixedKeys()
+    {
+        $this->assertSame(
+            [
+                'greg0ire_enum_tests_fixtures_foo_enum_GOD',
+                'greg0ire_enum_tests_fixtures_foo_enum_CHUCK',
+                'greg0ire_enum_tests_fixtures_foo_enum_GUITRY',
+            ],
+            $this->extension->getClassPrefixedKeys(FooEnum::class)
+        );
+    }
 }
