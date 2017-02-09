@@ -214,10 +214,12 @@ $view = $this->factory->create(EnumType::class, null, array(
 
 #### Twig extension
 
-This package comes with an `enum_label` filter, available thanks to the `EnumExtension` Twig class.
+This package comes with an `EnumExtension` Twig class. It contains a filter and some functions.
 You have to require the `twig/twig` package to get it working.
 
-The filter will try to return the constant label corresponding to the given value.
+##### Filter
+
+The `enum_label` filter will try to return the constant label corresponding to the given value.
 
 It will try to translate it if possible. To enable translation, require the `symfony/translation` component
 and pass a `Symfony\Component\Translation\TranslationInterface` instance on the `EnumExtension` constructor.
@@ -232,6 +234,24 @@ Usage:
 {{ value|enum_label('Your\\Enum\\Class', false) }} {# Disable translation. In this case the class prefix wont be added #}
 {{ value|enum_label('Your\\Enum\\Class', false, true) }} {# Disable translation but keep class prefix #}
 {{ value|enum_label('Your\\Enum\\Class', false, true, '.') }} {# Disable translation but keep class prefix with a custom separator #}
+```
+
+##### Functions
+
+The 3 available twig functions are ports of some `AbstractEnum` methods that can be useful in a twig template:
+
+* `enum_get_constants` => `AbstractEnum::getConstants`
+* `enum_get_keys` => `AbstractEnum::getKeys`
+* `enum_get_class_prefixed_keys` => `AbstractEnum::getClassPrefixedKeys`
+
+The arguments are exactly the same except you have to specify the targeted class first (as `enum_label` filter).
+
+Here is a concrete example with `enum_get_constants` function:
+
+```twig
+{% for enum_key, enum_value in enum_get_constants('Your\\Enum\\Class') %}
+    {{ enum_key }} -> {{ enum_value }}
+{% endfor %}
 ```
 
 ##### Twig extension as a service
