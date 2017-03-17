@@ -46,7 +46,7 @@ final class EnumTypeTest extends TypeTestCase
      */
     public function testInvalidEnums($class)
     {
-        $this->setExpectedException(
+        $this->expectException(
             LogicException::class,
             'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
         );

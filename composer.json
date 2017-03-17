@@ -15,8 +15,8 @@
         "doctrine/inflector": "^1.0"
     },
     "require-dev": {
-        "matthiasnoback/symfony-dependency-injection-test": "^1.0",
-        "phpunit/phpunit": "^5.6",
+        "matthiasnoback/symfony-dependency-injection-test": "^1.0 || ^2.0",
+        "phpunit/phpunit": "^5.7 || ^6.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "symfony/form": "^2.7 || ^3.0",
         "symfony/framework-bundle": "^2.7 || ^3.0",
