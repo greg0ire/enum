@@ -44,6 +44,14 @@ DaysOfWeek::isValidValue(7);                         // false
 DaysOfWeek::isValidValue('Friday');                  // false
 ```
 
+Both methods have an `assert*` counterpart that will throw a
+`Greg0ire\Enum\Exception\InvalidEnumValue` exception:
+
+```
+DaysOfWeek::assertValidName(0);                      // InvalidEnumName
+DaysOfWeek::assertValidValue('Friday');              // InvalidEnumValue
+```
+
 Additionally, you may get all the constants in your class as a hash:
 
 ```php

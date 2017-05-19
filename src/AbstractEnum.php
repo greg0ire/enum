@@ -3,6 +3,8 @@
 namespace Greg0ire\Enum;
 
 use Doctrine\Common\Inflector\Inflector;
+use Greg0ire\Enum\Exception\InvalidEnumName;
+use Greg0ire\Enum\Exception\InvalidEnumValue;
 
 /**
  * @author Grégoire Paris <postmaster@greg0ire.fr>
@@ -121,6 +123,21 @@ abstract class AbstractEnum
     }
 
     /**
+     * Asserts a constant with this name is defined.
+     *
+     * @param int|string $value  the value to test
+     * @param bool       $strict check the types of the value in the values
+     *
+     * @throws InvalidEnumName
+     */
+    final public static function assertValidName($name)
+    {
+        if (!self::isValidName($name)) {
+            throw InvalidEnumName::fromName($name, self::getKeys());
+        }
+    }
+
+    /**
      * Checks whether a constant with this value is defined.
      *
      * @param int|string $value  the value to test
@@ -133,6 +150,21 @@ abstract class AbstractEnum
         $values = array_values(self::getConstants());
 
         return in_array($value, $values, $strict);
+    }
+
+    /**
+     * Asserts a constant with this value is defined.
+     *
+     * @param int|string $value  the value to test
+     * @param bool       $strict check the types of the value in the values
+     *
+     * @throws InvalidEnumValue
+     */
+    final public static function assertValidValue($value, $strict = true)
+    {
+        if (!self::isValidValue($value, $strict)) {
+            throw InvalidEnumValue::fromValue($value, self::getConstants());
+        }
     }
 
     /**

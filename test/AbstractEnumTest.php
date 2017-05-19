@@ -2,6 +2,8 @@
 
 namespace Greg0ire\Enum\Tests;
 
+use Greg0ire\Enum\Exception\InvalidEnumName;
+use Greg0ire\Enum\Exception\InvalidEnumValue;
 use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyWithSameValuesEnum;
@@ -132,10 +134,28 @@ class AbstractEnumTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(DummyEnum::isValidName('invalid'));
     }
 
+    public function testAssertValidName()
+    {
+        $this->expectException(InvalidEnumName::class);
+        $this->expectExceptionMessage(
+            '"fiRsT" is not a valid name, valid names are: ("FIRST", "SECOND")'
+        );
+        DummyEnum::assertValidName('fiRsT');
+    }
+
     public function testIsValidValue()
     {
         $this->assertTrue(DummyEnum::isValidValue(42));
         $this->assertFalse(DummyEnum::isValidValue('42'));
+    }
+
+    public function testAssertValidValue()
+    {
+        $this->expectException(InvalidEnumValue::class);
+        $this->expectExceptionMessage(
+            '"test" is not a valid value, valid values are: ("42", "some_value")'
+        );
+        DummyEnum::assertValidValue('test');
     }
 
     public function testSimpleKeyFromValue()
