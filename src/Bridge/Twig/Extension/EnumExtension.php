@@ -2,6 +2,7 @@
 
 namespace Greg0ire\Enum\Bridge\Twig\Extension;
 
+use Greg0ire\Enum\AbstractEnum;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -29,6 +30,18 @@ final class EnumExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFilter('enum_label', [$this, 'label']),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFunctions()
+    {
+        return [
+            new \Twig_SimpleFunction('enum_get_constants', [$this, 'getConstants']),
+            new \Twig_SimpleFunction('enum_get_keys', [$this, 'getKeys']),
+            new \Twig_SimpleFunction('enum_get_class_prefixed_keys', [$this, 'getClassPrefixedKeys']),
         ];
     }
 
@@ -71,6 +84,48 @@ final class EnumExtension extends \Twig_Extension
         }
 
         return $label;
+    }
+
+    /**
+     * @see AbstractEnum::getConstants()
+     *
+     * @param string $class
+     * @param callable|null $keysCallback
+     * @param bool          $classPrefixed
+     * @param string        $namespaceSeparator
+     *
+     * @return array
+     */
+    public function getConstants($class, $keysCallback = null, $classPrefixed = false, $namespaceSeparator = null)
+    {
+        return call_user_func([$class, 'getConstants'], $keysCallback, $classPrefixed, $namespaceSeparator);
+    }
+
+    /**
+     * @see AbstractEnum::getKeys()
+     *
+     * @param string $class
+     * @param $callback|null $callback
+     *
+     * @return array
+     */
+    public function getKeys($class, $callback = null)
+    {
+        return call_user_func([$class, 'getKeys'], $callback);
+    }
+
+    /**
+     * @see AbstractEnum::getClassPrefixedKeys()
+     *
+     * @param string $class
+     * @param callable|null $callback
+     * @param string|null $namespaceSeparator
+     *
+     * @return mixed
+     */
+    public function getClassPrefixedKeys($class, $callback = null, $namespaceSeparator = null)
+    {
+        return call_user_func([$class, 'getClassPrefixedKeys'], $callback, $namespaceSeparator);
     }
 
     /**
