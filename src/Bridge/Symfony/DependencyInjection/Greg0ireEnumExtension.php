@@ -24,7 +24,7 @@ final class Greg0ireEnumExtension extends Extension
         if (class_exists(\Twig_Extension::class)) {
             $loader->load('twig.xml');
 
-            if (class_exists(Translator::class)) {
+            if ($container->hasDefinition('translator.default')) {
                 $container->getDefinition('greg0ire_enum.twig.extension.enum')
                     ->addArgument(new Reference('translator.default'));
             }
