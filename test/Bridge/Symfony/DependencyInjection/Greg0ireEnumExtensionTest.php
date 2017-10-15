@@ -5,6 +5,7 @@ namespace Greg0ire\Enum\Tests\Bridge\Symfony\DependencyInjection;
 use Greg0ire\Enum\Bridge\Symfony\DependencyInjection\Greg0ireEnumExtension;
 use Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Symfony\Bundle\FrameworkBundle\DependencyInjection\FrameworkExtension;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
@@ -12,15 +13,52 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
 {
+    private $frameworkExtension;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->setParameter('kernel.debug', true);
+        $this->setParameter('kernel.root_dir', sys_get_temp_dir());
+        $this->setParameter('kernel.bundles_metadata', []);
+
+        // needed for legacy versions of symfony
+        $this->setParameter('kernel.bundles', []);
+        $this->setParameter('kernel.cache_dir', sys_get_temp_dir());
+
+        $this->container->registerExtension($this->frameworkExtension = new FrameworkExtension());
+    }
+
     public function testLoad()
     {
+        $this->frameworkExtension->load(
+            ['framework' => ['translator' => ['fallbacks' => ['en']]]],
+            $this->container
+        );
         $this->load();
 
-        $this->assertContainerBuilderHasService('greg0ire_enum.twig.extension.enum', EnumExtension::class);
+        $this->assertContainerBuilderHasService(
+            'greg0ire_enum.twig.extension.enum',
+            EnumExtension::class
+        );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
             'greg0ire_enum.twig.extension.enum',
             0,
             new Reference('translator.default')
+        );
+    }
+
+    public function testLoadWithoutATranslator()
+    {
+        $this->frameworkExtension->load(
+            ['framework' => ['translator' => ['enabled' => false]]],
+            $this->container
+        );
+        $this->load();
+
+        $this->assertContainerBuilderHasService(
+            'greg0ire_enum.twig.extension.enum',
+            EnumExtension::class
         );
     }
 
@@ -29,8 +67,6 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
      */
     protected function getContainerExtensions()
     {
-        return [
-            new Greg0ireEnumExtension(),
-        ];
+        return [new Greg0ireEnumExtension()];
     }
 }
