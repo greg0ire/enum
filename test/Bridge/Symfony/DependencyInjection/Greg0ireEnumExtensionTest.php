@@ -16,7 +16,10 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertContainerBuilderHasService('greg0ire_enum.twig.extension.enum', EnumExtension::class);
+        $this->assertContainerBuilderHasService(
+            'greg0ire_enum.twig.extension.enum',
+            EnumExtension::class
+        );
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
             'greg0ire_enum.twig.extension.enum',
             0,
