@@ -11,6 +11,13 @@ enum classes.
 
 ## Usage
 
+### Configuration
+
+```yml
+greg0ire_enum:
+    use_translator: false # defaults to true, unless the symfony translator is disabled
+```
+
 ### Basic usage
 
 Extend the `Greg0ire\Enum\AbstractEnum`, define your enum key values as constants,
