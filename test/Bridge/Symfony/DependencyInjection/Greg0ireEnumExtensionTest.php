@@ -13,11 +13,45 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
 {
-    private $frameworkExtension;
-
-    protected function setUp()
+    public function testLoad()
     {
-        parent::setUp();
+        $this->load();
+
+        $this->assertContainerBuilderHasService(
+            'greg0ire_enum.twig.extension.enum',
+            EnumExtension::class
+        );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
+            'greg0ire_enum.twig.extension.enum',
+            0,
+            new Reference('translator.default')
+        );
+    }
+
+    public function prependDataProvider()
+    {
+        return [
+            'translator disabled' => [
+                ['enabled' => false],
+                [['use_translator' => false]],
+            ],
+            'translator enabled' => [
+                ['enabled' => true],
+                [],
+            ],
+            'translator fallback' => [
+                ['fallbacks' => ['en']],
+                [],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider prependDataProvider
+     */
+    public function testPrepend($translatorConfig, $expectedConfigs)
+    {
         $this->setParameter('kernel.debug', true);
         $this->setParameter('kernel.root_dir', sys_get_temp_dir());
         $this->setParameter('kernel.bundles_metadata', []);
@@ -26,39 +60,15 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
         $this->setParameter('kernel.bundles', []);
         $this->setParameter('kernel.cache_dir', sys_get_temp_dir());
 
-        $this->container->registerExtension($this->frameworkExtension = new FrameworkExtension());
-    }
-
-    public function testLoad()
-    {
-        $this->frameworkExtension->load(
-            ['framework' => ['translator' => ['fallbacks' => ['en']]]],
-            $this->container
+        $this->container->registerExtension(new FrameworkExtension());
+        $this->container->loadFromExtension(
+            'framework',
+            ['translator' => $translatorConfig]
         );
-        $this->load();
-
-        $this->assertContainerBuilderHasService(
-            'greg0ire_enum.twig.extension.enum',
-            EnumExtension::class
-        );
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'greg0ire_enum.twig.extension.enum',
-            0,
-            new Reference('translator.default')
-        );
-    }
-
-    public function testLoadWithoutATranslator()
-    {
-        $this->frameworkExtension->load(
-            ['framework' => ['translator' => ['enabled' => false]]],
-            $this->container
-        );
-        $this->load();
-
-        $this->assertContainerBuilderHasService(
-            'greg0ire_enum.twig.extension.enum',
-            EnumExtension::class
+        $this->container->getExtension('greg0ire_enum')->prepend($this->container);
+        $this->assertSame(
+            $expectedConfigs,
+            $this->container->getExtensionConfig('greg0ire_enum')
         );
     }
 
