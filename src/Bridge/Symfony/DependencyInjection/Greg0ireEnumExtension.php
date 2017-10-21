@@ -2,12 +2,10 @@
 
 namespace Greg0ire\Enum\Bridge\Symfony\DependencyInjection;
 
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
@@ -23,11 +21,6 @@ final class Greg0ireEnumExtension extends Extension
 
         if (class_exists(\Twig_Extension::class)) {
             $loader->load('twig.xml');
-
-            if ($container->hasDefinition('translator.default')) {
-                $container->getDefinition('greg0ire_enum.twig.extension.enum')
-                    ->addArgument(new Reference('translator.default'));
-            }
         }
     }
 }
