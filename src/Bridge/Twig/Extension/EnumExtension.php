@@ -16,11 +16,25 @@ final class EnumExtension extends \Twig_Extension
     private $translator;
 
     /**
-     * @param TranslatorInterface $translator
+     * @var string|null
      */
-    public function __construct(TranslatorInterface $translator = null)
+    private $translationDomain;
+
+    /**
+     * @var bool
+     */
+    private $classPrefixed;
+
+    /**
+     * @param TranslatorInterface $translator
+     * @param string|null $translationDomain
+     * @param bool|null $classPrefixed
+     */
+    public function __construct(TranslatorInterface $translator = null, $translationDomain = null, $classPrefixed = null)
     {
         $this->translator = $translator;
+        $this->translationDomain = $translationDomain;
+        $this->classPrefixed = $classPrefixed;
     }
 
     /**
@@ -69,7 +83,7 @@ final class EnumExtension extends \Twig_Extension
 
         // If not defined, guess the default behavior.
         if (is_null($classPrefixed)) {
-            $classPrefixed = $useTranslation;
+            $classPrefixed = !is_null($this->classPrefixed) ? $this->classPrefixed : $useTranslation;
         }
 
         $label = array_search(
@@ -78,6 +92,10 @@ final class EnumExtension extends \Twig_Extension
         );
 
         if ($useTranslation) {
+            if (is_null($translationDomain)) {
+                $translationDomain = $this->translationDomain;
+            }
+
             $translatedLabel = $this->translator->trans($label, [], $translationDomain);
 
             return $translatedLabel ?: $label;
@@ -96,8 +114,12 @@ final class EnumExtension extends \Twig_Extension
      *
      * @return array
      */
-    public function getConstants($class, $keysCallback = null, $classPrefixed = false, $namespaceSeparator = null)
+    public function getConstants($class, $keysCallback = null, $classPrefixed = null, $namespaceSeparator = null)
     {
+        if (is_null($classPrefixed)) {
+            $classPrefixed = !is_null($this->classPrefixed) ? $this->classPrefixed : false;
+        }
+
         return call_user_func([$class, 'getConstants'], $keysCallback, $classPrefixed, $namespaceSeparator);
     }
 

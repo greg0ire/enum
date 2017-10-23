@@ -4,11 +4,9 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="greg0ire_enum.twig.extension.enum" class="Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension">
-            <argument type="service" id="translator" on-invalid="null"/>
-            <argument></argument>   <!-- will be filled in with translation_domain dynamically -->
+        <service id="Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType" class="Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType">
             <argument></argument>   <!-- will be filled in with prefix_label_with_class dynamically -->
-            <tag name="twig.extension"/>
+            <tag name="form.type"></tag>
         </service>
     </services>
 </container>

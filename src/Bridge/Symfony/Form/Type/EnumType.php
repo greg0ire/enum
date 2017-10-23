@@ -14,6 +14,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class EnumType extends AbstractType
 {
+    /** @var bool */
+    private $classPrefixed;
+
+    public function __construct($classPrefixed = null)
+    {
+        $this->classPrefixed = !is_null($classPrefixed) ? $classPrefixed : false;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -29,7 +37,7 @@ final class EnumType extends AbstractType
             return $class;
         });
 
-        $resolver->setDefault('prefix_label_with_class', false);
+        $resolver->setDefault('prefix_label_with_class', $this->classPrefixed);
         $resolver->setAllowedTypes('prefix_label_with_class', 'bool');
 
         $resolver->setDefault('choices', function (Options $options) {
