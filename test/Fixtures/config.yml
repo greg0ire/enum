@@ -1,0 +1,4 @@
+framework:
+  secret: 'This is very secret. I am Batman.'
+  translator:
+    fallbacks: ['en']

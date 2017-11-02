@@ -6,7 +6,6 @@ use Greg0ire\Enum\Bridge\Symfony\DependencyInjection\Greg0ireEnumExtension;
 use Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\FrameworkExtension;
-use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
@@ -40,11 +39,6 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService(
             'greg0ire_enum.twig.extension.enum',
             EnumExtension::class
-        );
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'greg0ire_enum.twig.extension.enum',
-            0,
-            new Reference('translator.default')
         );
     }
 
