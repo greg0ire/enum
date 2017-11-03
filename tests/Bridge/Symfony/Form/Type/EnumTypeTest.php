@@ -5,7 +5,6 @@ namespace Greg0ire\Enum\Tests\Bridge\Symfony\Form\Type;
 use Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooInterface;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\Test\TypeTestCase;
 
@@ -16,7 +15,7 @@ final class EnumTypeTest extends TypeTestCase
 {
     public function testEnumChoices()
     {
-        $view = $this->factory->create($this->getEnumType(), null, [
+        $view = $this->factory->create(EnumType::class, null, [
             'class' => DummyEnum::class,
         ])->createView();
 
@@ -30,7 +29,7 @@ final class EnumTypeTest extends TypeTestCase
 
     public function testEnumChoicesClassPrefix()
     {
-        $view = $this->factory->create($this->getEnumType(), null, [
+        $view = $this->factory->create(EnumType::class, null, [
             'class' => DummyEnum::class,
             'prefix_label_with_class' => true,
         ])->createView();
@@ -51,7 +50,7 @@ final class EnumTypeTest extends TypeTestCase
             'The option "class" must be a class that inherits from Greg0ire\Enum\AbstractEnum'
         );
 
-        $this->factory->create($this->getEnumType(), null, [
+        $this->factory->create(EnumType::class, null, [
             'class' => $class,
         ]);
 
@@ -65,15 +64,5 @@ final class EnumTypeTest extends TypeTestCase
             [\StdClass::class],
             ['This\Does\Not\Exist\At\All'],
         ];
-    }
-
-    private function getEnumType()
-    {
-        // Symfony <2.8 BC
-        if (!method_exists(AbstractType::class, 'getBlockPrefix')) {
-            return new EnumType();
-        }
-
-        return EnumType::class;
     }
 }

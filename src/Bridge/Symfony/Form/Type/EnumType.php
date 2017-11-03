@@ -39,13 +39,7 @@ final class EnumType extends AbstractType
                 ? call_user_func([$class, 'getClassPrefixedKeys'], 'strtolower')
                 : call_user_func([$class, 'getKeys'], 'strtolower');
 
-            $choices = array_combine($keys, call_user_func([$class, 'getConstants']));
-            // SF <3.1 BC
-            if ($options->offsetExists('choices_as_values') && !$options['choices_as_values']) {
-                return array_flip($choices);
-            }
-
-            return $choices;
+            return array_combine($keys, call_user_func([$class, 'getConstants']));
         });
     }
 
@@ -58,25 +52,10 @@ final class EnumType extends AbstractType
     }
 
     /**
-     * SF <2.8 compatibility.
-     *
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        $this->getBlockPrefix();
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getParent()
     {
-        // Symfony <2.8 BC
-        if (!method_exists(AbstractType::class, 'getBlockPrefix')) {
-            return 'choice';
-        }
-
         return ChoiceType::class;
     }
 }
