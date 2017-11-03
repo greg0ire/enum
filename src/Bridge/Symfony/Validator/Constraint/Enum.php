@@ -54,7 +54,7 @@ final class Enum extends Choice
     /**
      * {@inheritdoc}
      */
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return ChoiceValidator::class;
     }
@@ -62,7 +62,7 @@ final class Enum extends Choice
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOption()
+    public function getDefaultOption(): string
     {
         return 'class';
     }
@@ -70,7 +70,7 @@ final class Enum extends Choice
     /**
      * {@inheritdoc}
      */
-    public function getRequiredOptions()
+    public function getRequiredOptions(): array
     {
         return ['class'];
     }

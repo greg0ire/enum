@@ -29,7 +29,7 @@ final class EnumExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [new TwigFilter('enum_label', [$this, 'label'])];
     }
@@ -37,7 +37,7 @@ final class EnumExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('enum_get_constants', [$this, 'getConstants']),
@@ -59,11 +59,14 @@ final class EnumExtension extends AbstractExtension
      *                                        is available and enabled, false otherwise.
      * @param string      $namespaceSeparator Namespace separator to use with the class prefix.
      *                                        This takes effect only if $classPrefixed is true.
-     *
-     * @return string
      */
-    public function label($value, $class, $translationDomain = null, $classPrefixed = null, $namespaceSeparator = null)
-    {
+    public function label(
+        $value,
+        string $class,
+        $translationDomain = null,
+        ?bool $classPrefixed = null,
+        ?string $namespaceSeparator = null
+    ): string {
         // Determine if the translator can be used or not.
         $useTranslation = $this->translator instanceof TranslatorInterface
             && (is_null($translationDomain) || is_string($translationDomain));
@@ -89,50 +92,39 @@ final class EnumExtension extends AbstractExtension
 
     /**
      * @see AbstractEnum::getConstants()
-     *
-     * @param string $class
-     * @param callable|null $keysCallback
-     * @param bool          $classPrefixed
-     * @param string        $namespaceSeparator
-     *
-     * @return array
      */
-    public function getConstants($class, $keysCallback = null, $classPrefixed = false, $namespaceSeparator = null)
-    {
+    public function getConstants(
+        string $class,
+        ?callable $keysCallback = null,
+        ?bool $classPrefixed = false,
+        ?string $namespaceSeparator = null
+    ): array {
         return call_user_func([$class, 'getConstants'], $keysCallback, $classPrefixed, $namespaceSeparator);
     }
 
     /**
      * @see AbstractEnum::getKeys()
-     *
-     * @param string $class
-     * @param $callback|null $callback
-     *
-     * @return array
      */
-    public function getKeys($class, $callback = null)
+    public function getKeys(string $class, ?callback $callback = null)
     {
         return call_user_func([$class, 'getKeys'], $callback);
     }
 
     /**
      * @see AbstractEnum::getClassPrefixedKeys()
-     *
-     * @param string $class
-     * @param callable|null $callback
-     * @param string|null $namespaceSeparator
-     *
-     * @return mixed
      */
-    public function getClassPrefixedKeys($class, $callback = null, $namespaceSeparator = null)
-    {
+    public function getClassPrefixedKeys(
+        string $class,
+        ?callback $callback = null,
+        ?string $namespaceSeparator = null
+    ): array {
         return call_user_func([$class, 'getClassPrefixedKeys'], $callback, $namespaceSeparator);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'greg0ire_enum';
     }

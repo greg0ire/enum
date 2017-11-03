@@ -15,7 +15,7 @@ final class Greg0ireEnumBundle extends Bundle
     /**
      * {@inheritdoc}
      */
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
@@ -27,7 +27,7 @@ final class Greg0ireEnumBundle extends Bundle
     /**
      * {@inheritdoc}
      */
-    protected function getContainerExtensionClass()
+    protected function getContainerExtensionClass(): string
     {
         return Greg0ireEnumExtension::class;
     }
