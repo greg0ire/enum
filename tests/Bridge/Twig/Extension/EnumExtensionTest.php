@@ -6,6 +6,8 @@ use Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Environment;
+use Twig\TwigFilter;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
@@ -33,16 +35,11 @@ final class EnumExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testEnvironment()
     {
-        $twig = new \Twig_Environment($this->createMock(\Twig_LoaderInterface::class));
+        $twig = new Environment($this->createMock(\Twig_LoaderInterface::class));
         $twig->addExtension($this->extension);
 
-        $this->assertInstanceOf(\Twig_SimpleFilter::class, $twig->getFilter('enum_label'));
+        $this->assertInstanceOf(TwigFilter::class, $twig->getFilter('enum_label'));
 
-        if (version_compare(\Twig_Environment::VERSION, '1.26.0') === -1) {
-            $this->assertTrue($twig->hasExtension('greg0ire_enum'));
-
-            return;
-        }
         $this->assertTrue($twig->hasExtension(EnumExtension::class));
     }
 
