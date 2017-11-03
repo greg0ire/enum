@@ -5,7 +5,6 @@ namespace Greg0ire\Enum\Tests\Bridge\Symfony\Form\Type;
 use Greg0ire\Enum\Bridge\Symfony\Form\Type\EnumType;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooInterface;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\Test\TypeTestCase;
 
