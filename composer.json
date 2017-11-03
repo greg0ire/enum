@@ -22,11 +22,11 @@
         "matthiasnoback/symfony-dependency-injection-test": "^2.0",
         "phpunit/phpunit": "^6.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
-        "symfony/form": "^3.2.5",
-        "symfony/framework-bundle": "^3.2.5",
-        "symfony/phpunit-bridge": "^3.3",
-        "symfony/twig-bundle": "^3.2",
-        "symfony/validator": "^3.2.5",
+        "symfony/form": "^3.2.5 || ^4.0",
+        "symfony/framework-bundle": "^3.2.5 || ^4.0",
+        "symfony/phpunit-bridge": "^3.3 || ^4.0",
+        "symfony/twig-bundle": "^3.2 || ^4.0",
+        "symfony/validator": "^3.2.5 || ^4.0",
         "twig/twig": "^2.4.2"
     },
     "suggest": {
@@ -34,8 +34,8 @@
         "symfony/validator": "To use enum validator"
     },
     "conflict": {
-        "symfony/form": "<3.2 || >=4.0 <999",
-        "symfony/validator": "<3.2 || >=4.0 <999"
+        "symfony/form": "<3.2 || >=5.0 <999",
+        "symfony/validator": "<3.2 || >=5.0 <999"
     },
     "autoload": {
         "psr-4": {
