@@ -28,7 +28,7 @@ final class Greg0ireEnumBundleTest extends AbstractContainerBuilderTestCase
 
     public function testBuild()
     {
-        $this->bundle->build($this->container);
+        $this->assertNull($this->bundle->build($this->container));
     }
 
     public function testGetContainerExtension()
