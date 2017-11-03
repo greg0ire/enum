@@ -7,8 +7,8 @@ use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooInterface;
-use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 final class EnumTest extends TestCase
 {
