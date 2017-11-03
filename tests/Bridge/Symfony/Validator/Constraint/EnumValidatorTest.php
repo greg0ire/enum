@@ -8,12 +8,12 @@ use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\ChoiceValidator;
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-class EnumValidatorTest extends AbstractConstraintValidatorTest
+class EnumValidatorTest extends ConstraintValidatorTestCase
 {
     public function testNullIsValid()
     {
