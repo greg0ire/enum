@@ -8,8 +8,9 @@ use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyWithSameValuesEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
+use PHPUnit\Framework\TestCase;
 
-class AbstractEnumTest extends \PHPUnit_Framework_TestCase
+class AbstractEnumTest extends TestCase
 {
     public function testDummyGetConstants()
     {

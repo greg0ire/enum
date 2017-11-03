@@ -5,6 +5,7 @@ namespace Greg0ire\Enum\Tests\Bridge\Twig\Extension;
 use Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooInterface;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Environment;
 use Twig\TwigFilter;
@@ -12,7 +13,7 @@ use Twig\TwigFilter;
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-final class EnumExtensionTest extends \PHPUnit_Framework_TestCase
+final class EnumExtensionTest extends TestCase
 {
     /**
      * @var TranslatorInterface|\PHPUnit_Framework_MockObject_MockObject
