@@ -27,7 +27,7 @@
         "symfony/phpunit-bridge": "^3.3",
         "symfony/twig-bundle": "^3.2",
         "symfony/validator": "^3.2",
-        "twig/twig": "^1.24 || ^2.0"
+        "twig/twig": "^2.0"
     },
     "suggest": {
         "symfony/form": "To use enum form type",

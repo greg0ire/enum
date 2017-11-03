@@ -4,11 +4,14 @@ namespace Greg0ire\Enum\Bridge\Twig\Extension;
 
 use Greg0ire\Enum\AbstractEnum;
 use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-final class EnumExtension extends \Twig_Extension
+final class EnumExtension extends AbstractExtension
 {
     /**
      * @var TranslatorInterface
@@ -28,9 +31,7 @@ final class EnumExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return [
-            new \Twig_SimpleFilter('enum_label', [$this, 'label']),
-        ];
+        return [new TwigFilter('enum_label', [$this, 'label'])];
     }
 
     /**
@@ -39,9 +40,9 @@ final class EnumExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('enum_get_constants', [$this, 'getConstants']),
-            new \Twig_SimpleFunction('enum_get_keys', [$this, 'getKeys']),
-            new \Twig_SimpleFunction('enum_get_class_prefixed_keys', [$this, 'getClassPrefixedKeys']),
+            new TwigFunction('enum_get_constants', [$this, 'getConstants']),
+            new TwigFunction('enum_get_keys', [$this, 'getKeys']),
+            new TwigFunction('enum_get_class_prefixed_keys', [$this, 'getClassPrefixedKeys']),
         ];
     }
 
