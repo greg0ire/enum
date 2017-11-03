@@ -17,11 +17,11 @@ final class EnumType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired('class');
         $resolver->setAllowedTypes('class', 'string');
-        $resolver->setNormalizer('class', function (Options $options, $class) {
+        $resolver->setNormalizer('class', function (Options $options, string $class): string {
             if (!is_a($class, AbstractEnum::class, true)) {
                 throw new LogicException('The option "class" must be a class that inherits from '.AbstractEnum::class);
             }
@@ -32,7 +32,7 @@ final class EnumType extends AbstractType
         $resolver->setDefault('prefix_label_with_class', false);
         $resolver->setAllowedTypes('prefix_label_with_class', 'bool');
 
-        $resolver->setDefault('choices', function (Options $options) {
+        $resolver->setDefault('choices', function (Options $options): array {
             $class = $options['class'];
 
             $keys = $options['prefix_label_with_class']
@@ -46,7 +46,7 @@ final class EnumType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'enum';
     }
@@ -54,7 +54,7 @@ final class EnumType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }

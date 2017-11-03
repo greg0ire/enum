@@ -30,15 +30,15 @@ abstract class AbstractEnum
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget
      */
-    final public static function getConstants($keysCallback = null, $classPrefixed = false, $namespaceSeparator = null)
-    {
+    final public static function getConstants(
+        ?callable $keysCallback = null,
+        bool $classPrefixed = false,
+        string $namespaceSeparator = null
+    ): array {
         $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
         $enumTypes = static::getEnumTypes();
         $enums = [];
 
-        if (!is_array($enumTypes)) {
-            $enumTypes = [$enumTypes];
-        }
         foreach ($enumTypes as $key => $enumType) {
             $cacheKey = is_int($key) ? $enumType : $key;
 
@@ -75,7 +75,7 @@ abstract class AbstractEnum
      *
      * @return string[]
      */
-    final public static function getKeys($callback = null)
+    final public static function getKeys($callback = null): array
     {
         $keys = array_keys(static::getConstants());
 
@@ -94,8 +94,10 @@ abstract class AbstractEnum
      *
      * @return string[]
      */
-    final public static function getClassPrefixedKeys($callback = null, $namespaceSeparator = null)
-    {
+    final public static function getClassPrefixedKeys(
+        ?callable $callback = null,
+        ?string $namespaceSeparator = null
+    ): array {
         $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
         $classKey = str_replace('\\', $namespaceSeparator, Inflector::tableize(static::class));
 
@@ -112,12 +114,8 @@ abstract class AbstractEnum
 
     /**
      * Checks whether a constant with this name is defined.
-     *
-     * @param string $name the name of the constant
-     *
-     * @return bool the result of the test
      */
-    final public static function isValidName($name)
+    final public static function isValidName(string $name): bool
     {
         return array_key_exists($name, self::getConstants());
     }
@@ -125,12 +123,9 @@ abstract class AbstractEnum
     /**
      * Asserts a constant with this name is defined.
      *
-     * @param int|string $value  the value to test
-     * @param bool       $strict check the types of the value in the values
-     *
      * @throws InvalidEnumName
      */
-    final public static function assertValidName($name)
+    final public static function assertValidName(string $name): void
     {
         if (!self::isValidName($name)) {
             throw InvalidEnumName::fromName($name, self::getKeys());
@@ -145,7 +140,7 @@ abstract class AbstractEnum
      *
      * @return bool the result of the test
      */
-    final public static function isValidValue($value, $strict = true)
+    final public static function isValidValue($value, bool $strict = true): bool
     {
         $values = array_values(self::getConstants());
 
@@ -160,7 +155,7 @@ abstract class AbstractEnum
      *
      * @throws InvalidEnumValue
      */
-    final public static function assertValidValue($value, $strict = true)
+    final public static function assertValidValue($value, bool $strict = true): void
     {
         if (!self::isValidValue($value, $strict)) {
             throw InvalidEnumValue::fromValue($value, self::getConstants());
@@ -168,11 +163,11 @@ abstract class AbstractEnum
     }
 
     /**
-     * Adds possibility several classes together.
+     * Can be useful if you need to get constants from several classes/interfaces
      *
-     * @return string|string[]
+     * @return string[]
      */
-    protected static function getEnumTypes()
+    protected static function getEnumTypes(): array
     {
         return [get_called_class()];
     }
