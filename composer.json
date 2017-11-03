@@ -24,6 +24,7 @@
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "symfony/form": "^3.2",
         "symfony/framework-bundle": "^3.2",
+        "symfony/phpunit-bridge": "^3.3",
         "symfony/twig-bundle": "^3.2",
         "symfony/validator": "^3.2",
         "twig/twig": "^1.24 || ^2.0"
