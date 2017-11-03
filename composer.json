@@ -43,7 +43,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Greg0ire\\Enum\\Tests\\": "test"
+            "Greg0ire\\Enum\\Tests\\": "tests"
         }
     },
     "config": {

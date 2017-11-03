@@ -116,15 +116,14 @@ You can get all three constants by creating this Enum :
 
 ```php
 use Greg0ire\Enum\AbstractEnum;
+use My\Namespace\SomeInterface;
+use Vendor\Namespace\ClassFromAVendor;
 
 final class MyEnum extends AbstractEnum
 {
     protected static function getEnumTypes()
     {
-        return array(
-            'Vendor\Namespace\ClassFromAVendor',
-            'My\Namespace\SomeInterface',
-        );
+        return [ClassFromAVendor::class, SomeInterface::class];
     }
 }
 ```
@@ -134,15 +133,17 @@ the hash keys.
 
 ```php
 use Greg0ire\Enum\AbstractEnum;
+use My\Namespace\SomeInterface;
+use Vendor\Namespace\ClassFromAVendor;
 
 final class MyEnum extends AbstractEnum
 {
     protected static function getEnumTypes()
     {
-        return array(
-            'prefix1' => 'Vendor\Namespace\ClassFromAVendor',
-            'prefix2' => 'My\Namespace\SomeInterface',
-        );
+        return [
+            'prefix1' => ClassFromAVendor::class,
+            'prefix2' => SomeInterface::class,
+        ];
     }
 }
 ```
@@ -274,10 +275,10 @@ Then, register the bundle in the kernel of your application:
 
 public function registerBundles()
 {
-    $bundles = array(
+    $bundles = [
         // ...
         new Greg0ire\Enum\Bridge\Symfony\Bundle\Greg0ireEnumBundle(),
-    );
+    ];
 
     // ...
 

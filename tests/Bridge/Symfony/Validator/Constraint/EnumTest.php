@@ -7,6 +7,7 @@ use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooInterface;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 final class EnumTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,7 +35,7 @@ final class EnumTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidEnumClasses($enumClass)
     {
-        $this->setExpectedException('\Symfony\Component\Validator\Exception\ConstraintDefinitionException');
+        $this->setExpectedException(ConstraintDefinitionException::class);
 
         new Enum($enumClass);
     }
