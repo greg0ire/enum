@@ -30,6 +30,10 @@ final class Enum extends Choice
      */
     public function __construct($options = null)
     {
+        // sf < 4.0 BC
+        if (property_exists(self::class, 'strict')) {
+            $this->strict = true;
+        }
         parent::__construct($options);
 
         if (!is_a($this->class, AbstractEnum::class, true)) {
