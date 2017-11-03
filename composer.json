@@ -15,26 +15,27 @@
         }
     ],
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^7.1",
         "doctrine/inflector": "^1.0"
     },
     "require-dev": {
-        "matthiasnoback/symfony-dependency-injection-test": "^1.0",
-        "phpunit/phpunit": "^5.6",
+        "matthiasnoback/symfony-dependency-injection-test": "^2.0",
+        "phpunit/phpunit": "^6.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
-        "symfony/form": "^2.7 || ^3.0",
-        "symfony/framework-bundle": "^2.7.8 || ^3.0",
-        "symfony/twig-bundle": "^2.7 || ^3.0",
-        "symfony/validator": "^2.7 || ^3.0",
-        "twig/twig": "^1.24 || ^2.0"
+        "symfony/form": "^3.2.5",
+        "symfony/framework-bundle": "^3.2.5",
+        "symfony/phpunit-bridge": "^3.3",
+        "symfony/twig-bundle": "^3.2",
+        "symfony/validator": "^3.2.5",
+        "twig/twig": "^2.4.2"
     },
     "suggest": {
         "symfony/form": "To use enum form type",
         "symfony/validator": "To use enum validator"
     },
     "conflict": {
-        "symfony/form": "<2.7 || >=4.0 <999",
-        "symfony/validator": "<2.7 || >=4.0 <999"
+        "symfony/form": "<3.2 || >=4.0 <999",
+        "symfony/validator": "<3.2 || >=4.0 <999"
     },
     "autoload": {
         "psr-4": {

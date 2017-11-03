@@ -17,11 +17,11 @@ final class EnumType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired('class');
         $resolver->setAllowedTypes('class', 'string');
-        $resolver->setNormalizer('class', function (Options $options, $class) {
+        $resolver->setNormalizer('class', function (Options $options, string $class): string {
             if (!is_a($class, AbstractEnum::class, true)) {
                 throw new LogicException('The option "class" must be a class that inherits from '.AbstractEnum::class);
             }
@@ -32,51 +32,30 @@ final class EnumType extends AbstractType
         $resolver->setDefault('prefix_label_with_class', false);
         $resolver->setAllowedTypes('prefix_label_with_class', 'bool');
 
-        $resolver->setDefault('choices', function (Options $options) {
+        $resolver->setDefault('choices', function (Options $options): array {
             $class = $options['class'];
 
             $keys = $options['prefix_label_with_class']
                 ? call_user_func([$class, 'getClassPrefixedKeys'], 'strtolower')
                 : call_user_func([$class, 'getKeys'], 'strtolower');
 
-            $choices = array_combine($keys, call_user_func([$class, 'getConstants']));
-            // SF <3.1 BC
-            if ($options->offsetExists('choices_as_values') && !$options['choices_as_values']) {
-                return array_flip($choices);
-            }
-
-            return $choices;
+            return array_combine($keys, call_user_func([$class, 'getConstants']));
         });
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'enum';
     }
 
     /**
-     * SF <2.8 compatibility.
-     *
      * {@inheritdoc}
      */
-    public function getName()
+    public function getParent(): string
     {
-        $this->getBlockPrefix();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        // Symfony <2.8 BC
-        if (!method_exists(AbstractType::class, 'getBlockPrefix')) {
-            return 'choice';
-        }
-
         return ChoiceType::class;
     }
 }

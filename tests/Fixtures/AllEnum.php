@@ -6,7 +6,7 @@ use Greg0ire\Enum\AbstractEnum;
 
 final class AllEnum extends AbstractEnum
 {
-    protected static function getEnumTypes()
+    protected static function getEnumTypes(): array
     {
         return [
             'originally' => FooInterface::class,
