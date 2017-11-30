@@ -19,6 +19,7 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
         parent::setUp();
         $this->setParameter('kernel.debug', true);
         $this->setParameter('kernel.root_dir', sys_get_temp_dir());
+        $this->setParameter('kernel.project_dir', sys_get_temp_dir());
         $this->setParameter('kernel.bundles_metadata', []);
 
         // needed for legacy versions of symfony
