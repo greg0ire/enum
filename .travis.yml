@@ -33,7 +33,7 @@ jobs:
     - stage: lint
       php: 7.1
       install:
-        - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer
+        - wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.8.3/php-cs-fixer.phar -O php-cs-fixer
         - chmod +x php-cs-fixer
       script:
         - ./php-cs-fixer fix --dry-run --diff
