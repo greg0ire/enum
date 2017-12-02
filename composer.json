@@ -20,7 +20,6 @@
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^2.0",
-        "sllh/php-cs-fixer-styleci-bridge": "^2.0",
         "symfony/config": "^3.2 || ^4.0",
         "symfony/dependency-injection": "^3.2 || ^4.0",
         "symfony/form": "^3.2.5 || ^4.0",

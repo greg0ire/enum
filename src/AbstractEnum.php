@@ -24,8 +24,8 @@ abstract class AbstractEnum
      * them in a local property for performance, before returning them.
      *
      * @param callable|null $keysCallback
-     * @param bool          $classPrefixed      True if you want the enum class prefix on each keys, false otherwise.
-     * @param string        $namespaceSeparator Only relevant if $classPrefixed is set to true.
+     * @param bool          $classPrefixed      true if you want the enum class prefix on each keys, false otherwise
+     * @param string        $namespaceSeparator only relevant if $classPrefixed is set to true
      *
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget
@@ -79,7 +79,7 @@ abstract class AbstractEnum
     {
         $keys = array_keys(static::getConstants());
 
-        if (null !== $callback) {
+        if ($callback !== null) {
             return array_map($callback, $keys);
         }
 
@@ -163,7 +163,7 @@ abstract class AbstractEnum
     }
 
     /**
-     * Can be useful if you need to get constants from several classes/interfaces
+     * Can be useful if you need to get constants from several classes/interfaces.
      *
      * @return string[]
      */
