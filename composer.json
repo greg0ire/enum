@@ -20,11 +20,15 @@
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^2.0",
-        "phpunit/phpunit": "^6.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0",
+        "symfony/config": "^3.2 || ^4.0",
+        "symfony/dependency-injection": "^3.2 || ^4.0",
         "symfony/form": "^3.2.5 || ^4.0",
         "symfony/framework-bundle": "^3.2.5 || ^4.0",
+        "symfony/http-kernel": "^3.2 || ^4.0",
+        "symfony/options-resolver": "^3.2 || ^4.0",
         "symfony/phpunit-bridge": "^3.3 || ^4.0",
+        "symfony/translation": "^3.2 || ^4.0",
         "symfony/twig-bundle": "^3.2 || ^4.0",
         "symfony/validator": "^3.2.5 || ^4.0",
         "twig/twig": "^2.4.2"
@@ -48,8 +52,7 @@
         }
     },
     "config": {
-        "sort-packages": true,
-        "bin-dir": "bin"
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {

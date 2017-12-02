@@ -20,8 +20,6 @@ matrix:
     - php: 7.1
       env: COMPOSER_OPTIONS="--prefer-lowest"
     - php: 7.1
-      env: SYMFONY_VERSION=3.2.*
-    - php: 7.1
       env: SYMFONY_VERSION=3.3.*
     - php: 7.1
       env: SYMFONY_VERSION=3.4.*@dev
@@ -39,4 +37,4 @@ install:
 
 script:
   - composer validate
-  - bin/phpunit
+  - SYMFONY_DEPRECATIONS_HELPER=weak_vendors SYMFONY_PHPUNIT_VERSION=6.0 vendor/bin/simple-phpunit
