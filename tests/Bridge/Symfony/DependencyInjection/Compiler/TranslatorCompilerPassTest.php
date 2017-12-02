@@ -20,7 +20,7 @@ final class TranslatorCompilerPassTest extends KernelTestCase
         static::assertAttributeInstanceOf(
             TranslatorInterface::class,
             'translator',
-            self::$kernel->getContainer()->get('greg0ire_enum.twig.extension.enum')
+            self::$kernel->getContainer()->get('greg0ire_enum.twig.extension.enum.public')
         );
     }
 

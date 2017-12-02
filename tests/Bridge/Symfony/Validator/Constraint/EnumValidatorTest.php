@@ -17,14 +17,20 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
 {
     public function testNullIsValid()
     {
-        $this->validator->validate(null, new Enum(DummyEnum::class));
+        $this->validator->validate(null, new Enum([
+            'strict' => true,
+            'class' => DummyEnum::class,
+        ]));
 
         $this->assertNoViolation();
     }
 
     public function testBlankButStringIsInvalid()
     {
-        $this->validator->validate(' ', new Enum(DummyEnum::class));
+        $this->validator->validate(' ', new Enum([
+            'strict' => true,
+            'class' => DummyEnum::class,
+        ]));
 
         $this->buildViolation('The value you selected is not a valid choice.')
             ->setParameter('{{ value }}', '" "')
@@ -34,15 +40,27 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
 
     public function testValidValues()
     {
-        $this->validator->validate(DummyEnum::FIRST, new Enum(DummyEnum::class));
-        $this->validator->validate(DummyEnum::SECOND, new Enum(DummyEnum::class));
+        $this->validator->validate(DummyEnum::FIRST, new Enum([
+            'strict' => true,
+            'class' => DummyEnum::class,
+        ]));
+        $this->validator->validate(DummyEnum::SECOND, new Enum([
+            'strict' => true,
+            'class' => DummyEnum::class,
+        ]));
 
         foreach (FooEnum::getConstants() as $value) {
-            $this->validator->validate($value, new Enum(FooEnum::class));
+            $this->validator->validate($value, new Enum([
+                'strict' => true,
+                'class' => FooEnum::class,
+            ]));
         }
 
         foreach (AllEnum::getConstants() as $value) {
-            $this->validator->validate($value, new Enum(AllEnum::class));
+            $this->validator->validate($value, new Enum([
+                'strict' => true,
+                'class' => AllEnum::class,
+            ]));
         }
 
         $this->assertNoViolation();
@@ -50,7 +68,10 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
 
     public function testInvalidValue()
     {
-        $this->validator->validate(1337, new Enum(DummyEnum::class));
+        $this->validator->validate(1337, new Enum([
+            'strict' => true,
+            'class' => DummyEnum::class,
+        ]));
 
         $this->buildViolation('The value you selected is not a valid choice.')
             ->setParameter('{{ value }}', '1337')
@@ -61,6 +82,7 @@ class EnumValidatorTest extends AbstractConstraintValidatorTest
     public function testInvalidValueWithShowKeys()
     {
         $this->validator->validate(1337, new Enum([
+            'strict' => true,
             'class' => DummyEnum::class,
             'showKeys' => true,
         ]));
