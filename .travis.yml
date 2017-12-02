@@ -35,7 +35,6 @@ matrix:
     - env: SYMFONY_VERSION=4.1.*@dev
 
 install:
-  - composer global require sllh/composer-lint:@stable --prefer-dist --no-interaction
   - |
       if [ "$SYMFONY_VERSION" != "" ]
       then composer require "symfony/symfony:$SYMFONY_VERSION" --no-update

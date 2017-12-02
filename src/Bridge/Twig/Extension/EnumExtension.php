@@ -89,7 +89,7 @@ final class EnumExtension extends \Twig_Extension
     /**
      * @see AbstractEnum::getConstants()
      *
-     * @param string $class
+     * @param string        $class
      * @param callable|null $keysCallback
      * @param bool          $classPrefixed
      * @param string        $namespaceSeparator
@@ -117,9 +117,9 @@ final class EnumExtension extends \Twig_Extension
     /**
      * @see AbstractEnum::getClassPrefixedKeys()
      *
-     * @param string $class
+     * @param string        $class
      * @param callable|null $callback
-     * @param string|null $namespaceSeparator
+     * @param string|null   $namespaceSeparator
      *
      * @return mixed
      */
