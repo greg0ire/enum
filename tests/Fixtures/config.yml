@@ -2,3 +2,8 @@ framework:
   secret: 'This is very secret. I am Batman.'
   translator:
     fallbacks: ['en']
+
+services:
+  greg0ire_enum.twig.extension.enum.public:
+    public: true
+    alias: greg0ire_enum.twig.extension.enum
