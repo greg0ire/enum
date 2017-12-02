@@ -55,9 +55,9 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-legacy-stable": "2.x-dev",
-            "dev-master": "3.x-dev",
-            "dev-unstable": "4.x-dev"
+            "dev-legacy-stable": "3.x-dev",
+            "dev-master": "4.x-dev",
+            "dev-unstable": "5.x-dev"
         }
     }
 }
