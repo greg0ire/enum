@@ -1,0 +1,5 @@
+services:
+  phpcsfixer: true
+  yamllint: true
+  eslint: true
+  composernormalize: true
