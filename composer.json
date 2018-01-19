@@ -2,7 +2,13 @@
     "name": "greg0ire/enum",
     "type": "library",
     "description": "work around the missing enum type in php",
-    "keywords": ["enum", "enumeration", "Symfony", "validator", "form"],
+    "keywords": [
+        "enum",
+        "enumeration",
+        "Symfony",
+        "validator",
+        "form"
+    ],
     "license": "CC-BY-SA-3.0",
     "authors": [
         {
@@ -17,6 +23,10 @@
     "require": {
         "php": "^7.1",
         "doctrine/inflector": "^1.0"
+    },
+    "conflict": {
+        "symfony/form": "<3.2 || >=5.0 <999",
+        "symfony/validator": "<3.2 || >=5.0 <999"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^2.0",
@@ -36,9 +46,15 @@
         "symfony/form": "To use enum form type",
         "symfony/validator": "To use enum validator"
     },
-    "conflict": {
-        "symfony/form": "<3.2 || >=5.0 <999",
-        "symfony/validator": "<3.2 || >=5.0 <999"
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-legacy-stable": "3.x-dev",
+            "dev-master": "4.x-dev",
+            "dev-unstable": "5.x-dev"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -48,16 +64,6 @@
     "autoload-dev": {
         "psr-4": {
             "Greg0ire\\Enum\\Tests\\": "tests"
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-legacy-stable": "3.x-dev",
-            "dev-master": "4.x-dev",
-            "dev-unstable": "5.x-dev"
         }
     }
 }
