@@ -11,10 +11,6 @@ php:
   - 7.2
   - nightly
 
-stages:
-  - lint
-  - test
-
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -34,16 +30,9 @@ install:
 
 jobs:
   include:
-    - stage: lint
-      php: 7.2
-      install:
-        - "wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/\
-           v2.8.3/php-cs-fixer.phar -O php-cs-fixer"
-        - chmod +x php-cs-fixer
+    - php: 7.2
       script:
-        - ./php-cs-fixer fix --dry-run --diff
         - composer validate
-    - stage: test
     - php: 7.1
       env: COMPOSER_OPTIONS="--prefer-lowest"
     - php: 7.2
