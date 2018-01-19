@@ -20,7 +20,10 @@ cache:
     - $HOME/.composer/cache/files
 
 script:
-  - SYMFONY_DEPRECATIONS_HELPER=weak_vendors SYMFONY_PHPUNIT_VERSION=6.5 vendor/bin/simple-phpunit
+  - >
+    SYMFONY_DEPRECATIONS_HELPER=weak_vendors
+    SYMFONY_PHPUNIT_VERSION=6.5
+    vendor/bin/simple-phpunit
 
 install:
   - |
@@ -34,7 +37,8 @@ jobs:
     - stage: lint
       php: 7.2
       install:
-        - wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.8.3/php-cs-fixer.phar -O php-cs-fixer
+        - "wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/\
+           v2.8.3/php-cs-fixer.phar -O php-cs-fixer"
         - chmod +x php-cs-fixer
       script:
         - ./php-cs-fixer fix --dry-run --diff
