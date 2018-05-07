@@ -1,5 +1,6 @@
 # Enums
 
+This is a random change.
 This package holds a simple class that may be used as an ancestor for your
 enum classes.
 
