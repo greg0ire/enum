@@ -20,8 +20,7 @@ final class Greg0ireEnumBundle extends Bundle
         parent::build($container);
 
         $container
-            ->addCompilerPass(new TranslatorCompilerPass())
-        ;
+            ->addCompilerPass(new TranslatorCompilerPass());
     }
 
     /**
