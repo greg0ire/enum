@@ -18,7 +18,7 @@ cache:
 script:
   - >
     SYMFONY_DEPRECATIONS_HELPER=weak_vendors
-    SYMFONY_PHPUNIT_VERSION=6.5
+    SYMFONY_PHPUNIT_VERSION=7.3.5
     vendor/bin/simple-phpunit
 
 install:

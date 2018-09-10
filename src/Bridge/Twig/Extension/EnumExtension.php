@@ -51,14 +51,14 @@ final class EnumExtension extends AbstractExtension
      *
      * @param mixed       $value              Must exists in the enumeration class specified with $class
      * @param string      $class              The enum class name
-     * @param string|bool $translationDomain  The translation domain to use if the translator if available.
+     * @param string|bool $translationDomain  the translation domain to use if the translator if available.
      *                                        string: Use the specified one
      *                                        null: Use the default one
      *                                        false: Do not use the translator
      * @param bool        $classPrefixed      Prefix the label with the enum class. Defaults to true if the translator
      *                                        is available and enabled, false otherwise.
-     * @param string      $namespaceSeparator Namespace separator to use with the class prefix.
-     *                                        This takes effect only if $classPrefixed is true.
+     * @param string      $namespaceSeparator namespace separator to use with the class prefix.
+     *                                        This takes effect only if $classPrefixed is true
      */
     public function label(
         $value,
