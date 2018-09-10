@@ -29,17 +29,17 @@
         "symfony/validator": "<3.2 || >=5.0 <999"
     },
     "require-dev": {
-        "matthiasnoback/symfony-dependency-injection-test": "^2.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^3.0",
         "symfony/config": "^3.2 || ^4.0",
         "symfony/dependency-injection": "^3.2 || ^4.0",
         "symfony/form": "^3.2.5 || ^4.0",
         "symfony/framework-bundle": "^3.2.5 || ^4.0",
         "symfony/http-kernel": "^3.2 || ^4.0",
-        "symfony/options-resolver": "^3.2 || ^4.0",
-        "symfony/phpunit-bridge": "^3.3 || ^4.0",
-        "symfony/translation": "^3.2 || ^4.0",
-        "symfony/twig-bundle": "^3.2 || ^4.0",
-        "symfony/validator": "^3.2.5 || ^4.0",
+        "symfony/options-resolver": "^3.4 || ^4.0",
+        "symfony/phpunit-bridge": "^4.1",
+        "symfony/translation": "^3.4 || ^4.0",
+        "symfony/twig-bundle": "^3.4 || ^4.0",
+        "symfony/validator": "^3.4 || ^4.0",
         "twig/twig": "^2.4.2"
     },
     "suggest": {

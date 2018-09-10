@@ -16,7 +16,7 @@ class AbstractEnumTest extends TestCase
     {
         $this->assertSame(
             [
-                'FIRST' => 42,
+                'FIRST'  => 42,
                 'SECOND' => 'some_value',
             ],
             DummyEnum::getConstants()
@@ -27,8 +27,8 @@ class AbstractEnumTest extends TestCase
     {
         $this->assertSame(
             [
-                'GOD' => 'Dieu',
-                'CHUCK' => 'Chuck Norris',
+                'GOD'    => 'Dieu',
+                'CHUCK'  => 'Chuck Norris',
                 'GUITRY' => 'Sacha Guitry',
             ],
             FooEnum::getConstants()
@@ -36,8 +36,8 @@ class AbstractEnumTest extends TestCase
 
         $this->assertSame(
             [
-                'god' => 'Dieu',
-                'chuck' => 'Chuck Norris',
+                'god'    => 'Dieu',
+                'chuck'  => 'Chuck Norris',
                 'guitry' => 'Sacha Guitry',
             ],
             FooEnum::getConstants('strtolower')
@@ -45,8 +45,8 @@ class AbstractEnumTest extends TestCase
 
         $this->assertSame(
             [
-                'greg0ire.enum.tests.fixtures.foo_enum.god' => 'Dieu',
-                'greg0ire.enum.tests.fixtures.foo_enum.chuck' => 'Chuck Norris',
+                'greg0ire.enum.tests.fixtures.foo_enum.god'    => 'Dieu',
+                'greg0ire.enum.tests.fixtures.foo_enum.chuck'  => 'Chuck Norris',
                 'greg0ire.enum.tests.fixtures.foo_enum.guitry' => 'Sacha Guitry',
             ],
             FooEnum::getConstants('strtolower', true, '.')
@@ -57,10 +57,10 @@ class AbstractEnumTest extends TestCase
     {
         $this->assertSame(
             [
-                'originally.GOD' => 'Dieu',
-                'originally.CHUCK' => 'Chuck Norris',
-                'originally.GUITRY' => 'Sacha Guitry',
-                'Greg0ire\Enum\Tests\Fixtures\DummyEnum::FIRST' => 42,
+                'originally.GOD'                                 => 'Dieu',
+                'originally.CHUCK'                               => 'Chuck Norris',
+                'originally.GUITRY'                              => 'Sacha Guitry',
+                'Greg0ire\Enum\Tests\Fixtures\DummyEnum::FIRST'  => 42,
                 'Greg0ire\Enum\Tests\Fixtures\DummyEnum::SECOND' => 'some_value',
             ],
             AllEnum::getConstants()
@@ -68,10 +68,10 @@ class AbstractEnumTest extends TestCase
 
         $this->assertSame(
             [
-                'originally.god' => 'Dieu',
-                'originally.chuck' => 'Chuck Norris',
-                'originally.guitry' => 'Sacha Guitry',
-                'greg0ire\enum\tests\fixtures\dummyenum::first' => 42,
+                'originally.god'                                 => 'Dieu',
+                'originally.chuck'                               => 'Chuck Norris',
+                'originally.guitry'                              => 'Sacha Guitry',
+                'greg0ire\enum\tests\fixtures\dummyenum::first'  => 42,
                 'greg0ire\enum\tests\fixtures\dummyenum::second' => 'some_value',
             ],
             AllEnum::getConstants('strtolower')

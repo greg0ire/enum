@@ -18,7 +18,7 @@ cache:
 script:
   - >
     SYMFONY_DEPRECATIONS_HELPER=weak_vendors
-    SYMFONY_PHPUNIT_VERSION=6.5
+    SYMFONY_PHPUNIT_VERSION=7.3.5
     vendor/bin/simple-phpunit
 
 install:
@@ -35,8 +35,6 @@ jobs:
         - composer validate
     - php: 7.1
       env: COMPOSER_OPTIONS="--prefer-lowest"
-    - php: 7.2
-      env: SYMFONY_VERSION=3.3.*
     - php: 7.2
       env: SYMFONY_VERSION=3.4
     - php: 7.2

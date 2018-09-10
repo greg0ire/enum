@@ -11,8 +11,10 @@ return PhpCsFixer\Config::create()
             'syntax' => 'short',
         ],
         'binary_operator_spaces' => [
-            'align_double_arrow' => false,
-            'align_equals' => false,
+            'operators' => [
+                '=>' => 'single_space',
+                '=' => 'single_space',
+            ],
         ],
         'combine_consecutive_unsets' => true,
         'linebreak_after_opening_tag' => true,
