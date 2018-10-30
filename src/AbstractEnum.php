@@ -5,6 +5,11 @@ namespace Greg0ire\Enum;
 use Doctrine\Common\Inflector\Inflector;
 use Greg0ire\Enum\Exception\InvalidEnumName;
 use Greg0ire\Enum\Exception\InvalidEnumValue;
+use ReflectionClass;
+use function is_array;
+use function is_bool;
+use function is_int;
+use function is_string;
 
 /**
  * @author Grégoire Paris <postmaster@greg0ire.fr>
@@ -26,6 +31,8 @@ abstract class AbstractEnum
      * @param callable|null $keysCallback
      * @param bool          $classPrefixed      true if you want the enum class prefix on each keys, false otherwise
      * @param string        $namespaceSeparator only relevant if $classPrefixed is set to true
+     * @param int           $flags              A bitmask of one or more of the following flags, which specify how to
+     *                                          filter scalar type. The default is ENUM_ALL.
      *
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget
@@ -33,18 +40,23 @@ abstract class AbstractEnum
     final public static function getConstants(
         ?callable $keysCallback = null,
         bool $classPrefixed = false,
-        string $namespaceSeparator = null
+        string $namespaceSeparator = null,
+        int $flags = EnumType::ENUM_ALL
     ): array {
         $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
         $enumTypes = static::getEnumTypes();
         $enums = [];
 
         foreach ($enumTypes as $key => $enumType) {
-            $cacheKey = is_int($key) ? $enumType : $key;
+            $cacheKey = (is_int($key) ? $enumType : $key);
+
+            if ($flags !== EnumType::ENUM_ALL) {
+                $cacheKey .= $flags;
+            }
 
             if (!isset(self::$constCache[$cacheKey])) {
                 $reflect = new \ReflectionClass($enumType);
-                self::$constCache[$cacheKey] = $reflect->getConstants();
+                self::$constCache[$cacheKey] = self::filterEnum($flags, $reflect);
             }
             if (count($enumTypes) > 1) {
                 foreach (self::$constCache[$cacheKey] as $subKey => $value) {
@@ -190,5 +202,44 @@ abstract class AbstractEnum
         }
 
         return count($keys) === 1 ? current($keys) : $keys;
+    }
+
+    /**
+     * @param int             $type
+     * @param ReflectionClass $reflect
+     *
+     * @return array
+     */
+    private static function filterEnum(int $type, ReflectionClass $reflect): array
+    {
+        if ($type === EnumType::ENUM_ALL) {
+            return $reflect->getConstants();
+        }
+
+        $enums = [];
+
+        foreach ($reflect->getConstants() as $key => $value) {
+            if (($type & EnumType::ENUM_INT) && is_int($value)) {
+                $enums[$key] = $value;
+                continue;
+            }
+
+            if (($type & EnumType::ENUM_STRING) && is_string($value)) {
+                $enums[$key] = $value;
+                continue;
+            }
+
+            if (($type & EnumType::ENUM_BOOL) && is_bool($value)) {
+                $enums[$key] = $value;
+                continue;
+            }
+
+            if (($type & EnumType::ENUM_ARRAY) && is_array($value)) {
+                $enums[$key] = $value;
+                continue;
+            }
+        }
+
+        return $enums;
     }
 }

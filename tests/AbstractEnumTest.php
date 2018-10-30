@@ -2,10 +2,12 @@
 
 namespace Greg0ire\Enum\Tests;
 
+use Greg0ire\Enum\EnumType;
 use Greg0ire\Enum\Exception\InvalidEnumName;
 use Greg0ire\Enum\Exception\InvalidEnumValue;
 use Greg0ire\Enum\Tests\Fixtures\AllEnum;
 use Greg0ire\Enum\Tests\Fixtures\DummyEnum;
+use Greg0ire\Enum\Tests\Fixtures\DummyWithManyTypes;
 use Greg0ire\Enum\Tests\Fixtures\DummyWithSameValuesEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use PHPUnit\Framework\TestCase;
@@ -167,5 +169,24 @@ class AbstractEnumTest extends TestCase
     public function testMultiKeysFromValue()
     {
         $this->assertSame(['FIRST', 'SECOND'], DummyWithSameValuesEnum::getKeysFromValue(42));
+    }
+
+    /**
+     * @dataProvider typeProvider
+     */
+    public function testWithSelectOnlyCustomType(int $type, array $expected)
+    {
+        $this->assertSame($expected, DummyWithManyTypes::getConstants(null, false, null, $type));
+    }
+
+    public function typeProvider()
+    {
+        return [
+            [EnumType::ENUM_INT, ['DIGIT' => 42]],
+            [EnumType::ENUM_STRING, ['TEXT' => '42']],
+            [EnumType::ENUM_BOOL, ['BOOLEAN' => true]],
+            [EnumType::ENUM_ARRAY, ['AN_ARRAY' => ['foo', 'bar']]],
+            [EnumType::ENUM_INT | EnumType::ENUM_ARRAY, ['DIGIT' => 42, 'AN_ARRAY' => ['foo', 'bar']]],
+        ];
     }
 }

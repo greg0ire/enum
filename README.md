@@ -148,6 +148,31 @@ final class MyEnum extends AbstractEnum
 }
 ```
 
+You can also specify how to handle scalar type to use.  
+The default is ENUM_ALL.
+
+Available flags constants:
+
+| Constant Name | Description          |
+|---------------|----------------------|
+| ENUM_INT      | Handle only integers |
+| ENUM_STRING   | Handle only strings  |
+| ENUM_BOOL     | Handle only booleans |
+| ENUM_ARRAY    | Handle only array    |
+| ENUM_ALL      | Handle all of them   |
+
+Examples:
+
+```php
+DummyWithManyTypes::getConstants(EnumType::ENUM_INT);
+```
+
+With multi-flags:
+
+```php
+DummyWithManyTypes::getConstants(EnumType::ENUM_INT | EnumType::ENUM_ARRAY);
+```
+
 ### Integration with other libraries
 
 `greg0ire/enum` integrates with other libraries. The list is available in the
