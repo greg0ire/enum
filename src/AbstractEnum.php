@@ -43,6 +43,7 @@ abstract class AbstractEnum
             $cacheKey = is_int($key) ? $enumType : $key;
 
             if (!isset(self::$constCache[$cacheKey])) {
+                assert(class_exists($enumType) || interface_exists($enumType));
                 $reflect = new \ReflectionClass($enumType);
                 self::$constCache[$cacheKey] = $reflect->getConstants();
             }
@@ -101,7 +102,7 @@ abstract class AbstractEnum
         $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
         $classKey = str_replace('\\', $namespaceSeparator, Inflector::tableize(static::class));
 
-        $keys = static::getKeys(function ($key) use ($namespaceSeparator, $classKey) {
+        $keys = static::getKeys(function ($key) use ($namespaceSeparator, $classKey): string {
             return $classKey.$namespaceSeparator.$key;
         });
 
@@ -158,7 +159,7 @@ abstract class AbstractEnum
     final public static function assertValidValue($value, bool $strict = true): void
     {
         if (!self::isValidValue($value, $strict)) {
-            throw InvalidEnumValue::fromValue($value, self::getConstants());
+            throw InvalidEnumValue::fromValue((string) $value, self::getConstants());
         }
     }
 

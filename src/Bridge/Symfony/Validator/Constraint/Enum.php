@@ -26,7 +26,7 @@ final class Enum extends Choice
     public $showKeys = false;
 
     /**
-     * {@inheritdoc}
+     * @param array|string $options
      */
     public function __construct($options = null)
     {
@@ -36,6 +36,7 @@ final class Enum extends Choice
         }
         parent::__construct($options);
 
+        assert(is_string($this->class));
         if (!is_a($this->class, AbstractEnum::class, true)) {
             throw new ConstraintDefinitionException(
                 'The option "class" must be a class that inherits from '.AbstractEnum::class

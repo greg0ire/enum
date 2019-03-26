@@ -14,7 +14,7 @@ use Twig\TwigFunction;
 final class EnumExtension extends AbstractExtension
 {
     /**
-     * @var TranslatorInterface
+     * @var ?TranslatorInterface
      */
     private $translator;
 
@@ -27,7 +27,7 @@ final class EnumExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @return TwigFilter[]
      */
     public function getFilters(): array
     {
@@ -35,7 +35,7 @@ final class EnumExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @return TwigFunction[]
      */
     public function getFunctions(): array
     {
@@ -80,8 +80,11 @@ final class EnumExtension extends AbstractExtension
             $value,
             call_user_func([$class, 'getConstants'], 'strtolower', $classPrefixed, $namespaceSeparator)
         );
+        assert(is_string($label));
 
         if ($useTranslation) {
+            assert(is_null($translationDomain) || is_string($translationDomain));
+            assert($this->translator instanceof TranslatorInterface);
             $translatedLabel = $this->translator->trans($label, [], $translationDomain);
 
             return $translatedLabel ?: $label;
@@ -105,7 +108,7 @@ final class EnumExtension extends AbstractExtension
     /**
      * @see AbstractEnum::getKeys()
      */
-    public function getKeys(string $class, ?callback $callback = null)
+    public function getKeys(string $class, ?callable $callback = null): array
     {
         return call_user_func([$class, 'getKeys'], $callback);
     }
@@ -115,7 +118,7 @@ final class EnumExtension extends AbstractExtension
      */
     public function getClassPrefixedKeys(
         string $class,
-        ?callback $callback = null,
+        ?callable $callback = null,
         ?string $namespaceSeparator = null
     ): array {
         return call_user_func([$class, 'getClassPrefixedKeys'], $callback, $namespaceSeparator);
