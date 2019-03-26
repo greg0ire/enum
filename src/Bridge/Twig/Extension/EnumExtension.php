@@ -80,8 +80,11 @@ final class EnumExtension extends AbstractExtension
             $value,
             call_user_func([$class, 'getConstants'], 'strtolower', $classPrefixed, $namespaceSeparator)
         );
+        assert(is_string($label));
 
         if ($useTranslation) {
+            assert(is_null($translationDomain) || is_string($translationDomain));
+            assert($this->translator instanceof TranslatorInterface);
             $translatedLabel = $this->translator->trans($label, [], $translationDomain);
 
             return $translatedLabel ?: $label;
