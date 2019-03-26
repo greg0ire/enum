@@ -159,7 +159,7 @@ abstract class AbstractEnum
     final public static function assertValidValue($value, bool $strict = true): void
     {
         if (!self::isValidValue($value, $strict)) {
-            throw InvalidEnumValue::fromValue($value, self::getConstants());
+            throw InvalidEnumValue::fromValue((string) $value, self::getConstants());
         }
     }
 
