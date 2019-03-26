@@ -14,7 +14,7 @@ use Twig\TwigFunction;
 final class EnumExtension extends AbstractExtension
 {
     /**
-     * @var TranslatorInterface
+     * @var ?TranslatorInterface
      */
     private $translator;
 
