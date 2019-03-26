@@ -27,7 +27,7 @@ final class EnumExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @return TwigFilter[]
      */
     public function getFilters(): array
     {
@@ -35,7 +35,7 @@ final class EnumExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @return TwigFunction[]
      */
     public function getFunctions(): array
     {
