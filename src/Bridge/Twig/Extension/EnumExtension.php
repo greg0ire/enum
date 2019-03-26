@@ -108,7 +108,7 @@ final class EnumExtension extends AbstractExtension
     /**
      * @see AbstractEnum::getKeys()
      */
-    public function getKeys(string $class, ?callback $callback = null)
+    public function getKeys(string $class, ?callable $callback = null): array
     {
         return call_user_func([$class, 'getKeys'], $callback);
     }
