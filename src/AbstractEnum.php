@@ -102,7 +102,7 @@ abstract class AbstractEnum
         $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
         $classKey = str_replace('\\', $namespaceSeparator, Inflector::tableize(static::class));
 
-        $keys = static::getKeys(function ($key) use ($namespaceSeparator, $classKey) {
+        $keys = static::getKeys(function ($key) use ($namespaceSeparator, $classKey): string {
             return $classKey.$namespaceSeparator.$key;
         });
 
