@@ -26,7 +26,7 @@ final class Enum extends Choice
     public $showKeys = false;
 
     /**
-     * {@inheritdoc}
+     * @param array|string $options
      */
     public function __construct($options = null)
     {
