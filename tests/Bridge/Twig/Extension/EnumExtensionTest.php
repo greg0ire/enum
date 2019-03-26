@@ -80,8 +80,8 @@ final class EnumExtensionTest extends TestCase
     {
         $this->assertSame(
             [
-                'GOD' => 'Dieu',
-                'CHUCK' => 'Chuck Norris',
+                'GOD'    => 'Dieu',
+                'CHUCK'  => 'Chuck Norris',
                 'GUITRY' => 'Sacha Guitry',
             ],
             $this->extension->getConstants(FooEnum::class)
