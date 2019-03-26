@@ -43,6 +43,7 @@ abstract class AbstractEnum
             $cacheKey = is_int($key) ? $enumType : $key;
 
             if (!isset(self::$constCache[$cacheKey])) {
+                assert(class_exists($enumType) || interface_exists($enumType));
                 $reflect = new \ReflectionClass($enumType);
                 self::$constCache[$cacheKey] = $reflect->getConstants();
             }
