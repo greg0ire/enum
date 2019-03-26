@@ -28,7 +28,7 @@ final class Enum extends Choice
     /**
      * {@inheritdoc}
      */
-    public function __construct($options = null)
+    public function __construct(?array $options = null)
     {
         // sf < 4.0 BC
         if (property_exists(self::class, 'strict')) {
