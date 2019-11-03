@@ -34,6 +34,7 @@ class EnumValidatorTest extends ConstraintValidatorTestCase
 
         $this->buildViolation('The value you selected is not a valid choice.')
             ->setParameter('{{ value }}', '" "')
+            ->setParameter('{{ choices }}', '42, "some_value"')
             ->setCode(Choice::NO_SUCH_CHOICE_ERROR)
             ->assertRaised();
     }
@@ -75,6 +76,7 @@ class EnumValidatorTest extends ConstraintValidatorTestCase
 
         $this->buildViolation('The value you selected is not a valid choice.')
             ->setParameter('{{ value }}', '1337')
+            ->setParameter('{{ choices }}', '42, "some_value"')
             ->setCode(Choice::NO_SUCH_CHOICE_ERROR)
             ->assertRaised();
     }
@@ -88,8 +90,9 @@ class EnumValidatorTest extends ConstraintValidatorTestCase
         ]));
 
         $this->buildViolation('The value you selected is not a valid choice. '
-            .'Valid '.DummyEnum::class.' constant keys are: FIRST, SECOND.')
+            .'Valid '.DummyEnum::class.' constant keys are: {{ choices }}')
             ->setParameter('{{ value }}', '1337')
+            ->setParameter('{{ choices }}', '42, "some_value"')
             ->setCode(Choice::NO_SUCH_CHOICE_ERROR)
             ->assertRaised();
     }

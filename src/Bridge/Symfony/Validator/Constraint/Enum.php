@@ -30,10 +30,6 @@ final class Enum extends Choice
      */
     public function __construct($options = null)
     {
-        // sf < 4.0 BC
-        if (property_exists(self::class, 'strict')) {
-            $this->strict = true;
-        }
         parent::__construct($options);
 
         if (!is_a($this->class, AbstractEnum::class, true)) {
@@ -44,8 +40,7 @@ final class Enum extends Choice
         $this->choices = call_user_func([$this->class, 'getConstants']);
 
         if ($this->showKeys) {
-            $keysMessage = 'Valid '.$this->class.' constant keys are: '
-                .implode(', ', call_user_func([$this->class, 'getKeys'])).'.';
+            $keysMessage = 'Valid '.$this->class.' constant keys are: {{ choices }}';
             $this->message .= ' '.$keysMessage;
             $this->multipleMessage .= ' '.$keysMessage;
         }
