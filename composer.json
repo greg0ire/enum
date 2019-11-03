@@ -39,7 +39,7 @@
         "symfony/phpunit-bridge": "^4.2",
         "symfony/translation": "^4.2",
         "symfony/twig-bundle": "^4.2",
-        "symfony/validator": "^4.2",
+        "symfony/validator": "^4.3.6",
         "twig/twig": "^2.4.2"
     },
     "suggest": {

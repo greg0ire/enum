@@ -44,8 +44,7 @@ final class Enum extends Choice
         $this->choices = call_user_func([$this->class, 'getConstants']);
 
         if ($this->showKeys) {
-            $keysMessage = 'Valid '.$this->class.' constant keys are: '
-                .implode(', ', call_user_func([$this->class, 'getKeys'])).'.';
+            $keysMessage = 'Valid '.$this->class.' constant keys are: {{ choices }}';
             $this->message .= ' '.$keysMessage;
             $this->multipleMessage .= ' '.$keysMessage;
         }
