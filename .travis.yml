@@ -35,10 +35,5 @@ jobs:
         - composer validate
     - php: 7.1
       env: COMPOSER_OPTIONS="--prefer-lowest"
-    - php: 7.2
-      env: SYMFONY_VERSION=3.4
-    - php: 7.2
-      env: SYMFONY_VERSION=4.1.*@dev
   allow_failures:
     - php: nightly
-    - env: SYMFONY_VERSION=4.1.*@dev
