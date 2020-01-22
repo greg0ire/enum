@@ -6,6 +6,7 @@ use Greg0ire\Enum\Bridge\Symfony\DependencyInjection\Compiler\TranslatorCompiler
 use Greg0ire\Enum\Bridge\Symfony\DependencyInjection\Greg0ireEnumExtension;
 use Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\LoggingTranslatorPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\FrameworkExtension;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -62,6 +63,8 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
 
     public function testTwigExtensionHasTheTranslator()
     {
+        $this->registerService('translator.logging.inner', \stdClass::class);
+        $this->registerService('logger', \stdClass::class);
         $this->frameworkExtension->load(
             ['framework' => ['translator' => ['fallbacks' => ['en']]]],
             $this->container
