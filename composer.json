@@ -32,7 +32,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "symfony/config": "^4.2 || ^5.0",
         "symfony/dependency-injection": "^4.2 || ^5.0",
-        "symfony/form": "^4.2 || ^5.0",
+        "symfony/form": "^4.2.5 || ^5.0",
         "symfony/framework-bundle": "^4.2 || ^5.0",
         "symfony/http-kernel": "^4.2 || ^5.0",
         "symfony/options-resolver": "^4.2 || ^5.0",
