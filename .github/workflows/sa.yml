@@ -1,0 +1,12 @@
+on: [push, pull_request]
+name: Static analysis
+jobs:
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: OSKAR-phpstan
+        uses: "docker://oskarstark/phpstan-ga"
+        with:
+          args: analyse src/ --level=3

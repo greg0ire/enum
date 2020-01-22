@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  UnitTests:
+    docker:
+      - image: circleci/php:7.3.11-cli
+    environment:
+      SYMFONY_PHPUNIT_VERSION: 7.5.17
+      SYMFONY_DEPRECATIONS_HELPER: "max[self]=0"
+    steps:
+      - checkout
+      - run:
+          name: Installing dependencies
+          command: composer update --prefer-dist
+      - run:
+          name: Running unit tests
+          command: vendor/bin/simple-phpunit
+  UnitTests-72:
+    docker:
+      - image: circleci/php:7.2-cli
+    environment:
+      SYMFONY_PHPUNIT_VERSION: 7.5.17
+      SYMFONY_DEPRECATIONS_HELPER: "max[self]=0"
+    steps:
+      - checkout
+      - run:
+          name: Installing dependencies
+          command: composer update --prefer-dist
+      - run:
+          name: Running unit tests
+          command: vendor/bin/simple-phpunit
+  Composer-Validate:
+    docker:
+      - image: circleci/php:7.3.11-cli
+    steps:
+      - checkout
+      - run:
+          name: Validate composer.json
+          command: composer validate
+
+workflows:
+  version: 2
+  unit-tests:
+    jobs:
+      - UnitTests
+      - UnitTests-72
+  sanity-check:
+    jobs:
+      - Composer-Validate

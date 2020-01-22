@@ -62,6 +62,8 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
 
     public function testTwigExtensionHasTheTranslator()
     {
+        $this->registerService('translator.logging.inner', \stdClass::class);
+        $this->registerService('logger', \stdClass::class);
         $this->frameworkExtension->load(
             ['framework' => ['translator' => ['fallbacks' => ['en']]]],
             $this->container

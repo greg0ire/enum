@@ -23,9 +23,8 @@ abstract class AbstractEnum
      * Uses reflection to find the constants defined in the class and cache
      * them in a local property for performance, before returning them.
      *
-     * @param callable|null $keysCallback
-     * @param bool          $classPrefixed      true if you want the enum class prefix on each keys, false otherwise
-     * @param string        $namespaceSeparator only relevant if $classPrefixed is set to true
+     * @param bool   $classPrefixed      true if you want the enum class prefix on each keys, false otherwise
+     * @param string $namespaceSeparator only relevant if $classPrefixed is set to true
      *
      * @return array a hash with your constants and their value. Useful for
      *               building a choice widget

@@ -30,7 +30,7 @@ final class EnumTypeTest extends TypeTestCase
     public function testEnumChoicesClassPrefix()
     {
         $view = $this->factory->create(EnumType::class, null, [
-            'class' => DummyEnum::class,
+            'class'                   => DummyEnum::class,
             'prefix_label_with_class' => true,
         ])->createView();
 
