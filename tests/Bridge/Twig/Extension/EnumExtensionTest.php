@@ -29,7 +29,7 @@ final class EnumExtensionTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->translator = $this->createMock(TranslatorInterface::class);
         $this->extension = new EnumExtension($this->translator);
