@@ -11,8 +11,10 @@ return PhpCsFixer\Config::create()
             'syntax' => 'short',
         ],
         'binary_operator_spaces' => [
-            'align_double_arrow' => false,
-            'align_equals' => false,
+            'operators' => [
+                '=>' => 'single_space',
+                '=' => 'single_space',
+            ],
         ],
         'combine_consecutive_unsets' => true,
         'linebreak_after_opening_tag' => true,
@@ -40,6 +42,7 @@ return PhpCsFixer\Config::create()
         'object_operator_without_whitespace' => true,
         'ordered_imports' => true,
         'space_after_semicolon' => true,
+        'single_line_throw' => false,
         'standardize_not_equals' => true,
         'trailing_comma_in_multiline_array' => true,
         'visibility_required' => [
