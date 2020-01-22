@@ -36,7 +36,7 @@
         "symfony/framework-bundle": "^4.2 || ^5.0",
         "symfony/http-kernel": "^4.2 || ^5.0",
         "symfony/options-resolver": "^4.2 || ^5.0",
-        "symfony/phpunit-bridge": "^4.2 || ^5.0",
+        "symfony/phpunit-bridge": "^5.0",
         "symfony/translation": "^4.2 || ^5.0",
         "symfony/translation-contracts": "^2.0",
         "symfony/twig-bundle": "^4.2 || ^5.0",
