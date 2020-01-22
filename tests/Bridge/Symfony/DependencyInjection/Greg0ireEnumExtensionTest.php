@@ -6,7 +6,6 @@ use Greg0ire\Enum\Bridge\Symfony\DependencyInjection\Compiler\TranslatorCompiler
 use Greg0ire\Enum\Bridge\Symfony\DependencyInjection\Greg0ireEnumExtension;
 use Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\LoggingTranslatorPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\FrameworkExtension;
 use Symfony\Component\DependencyInjection\Reference;
 
