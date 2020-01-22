@@ -19,7 +19,7 @@ final class Greg0ireEnumBundleTest extends AbstractContainerBuilderTestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
