@@ -231,7 +231,7 @@ You have to require the `twig/twig` package to get it working.
 The `enum_label` filter will try to return the constant label corresponding to the given value.
 
 It will try to translate it if possible. To enable translation, require the `symfony/translation` component
-and pass a `Symfony\Component\Translation\TranslationInterface` instance on the `EnumExtension` constructor.
+and pass a `Symfony\Contracts\Translation\TranslationInterface` instance on the `EnumExtension` constructor.
 
 If translation is not available, you will have the default label with class prefixing.
 

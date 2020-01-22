@@ -3,7 +3,7 @@
 namespace Greg0ire\Enum\Bridge\Twig\Extension;
 
 use Greg0ire\Enum\AbstractEnum;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;

@@ -16,7 +16,7 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
 {
     protected $frameworkExtension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->setParameter('kernel.debug', true);
@@ -83,7 +83,7 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
     /**
      * {@inheritdoc}
      */
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [new Greg0ireEnumExtension()];
     }

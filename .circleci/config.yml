@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/php:7.3.11-cli
     environment:
-      SYMFONY_PHPUNIT_VERSION: 7.5.17
+      SYMFONY_PHPUNIT_VERSION: 8.5.2
       SYMFONY_DEPRECATIONS_HELPER: "max[self]=0"
     steps:
       - checkout
@@ -18,7 +18,7 @@ jobs:
     docker:
       - image: circleci/php:7.2-cli
     environment:
-      SYMFONY_PHPUNIT_VERSION: 7.5.17
+      SYMFONY_PHPUNIT_VERSION: 8.5.2
       SYMFONY_DEPRECATIONS_HELPER: "max[self]=0"
     steps:
       - checkout
