@@ -8,6 +8,7 @@ use Greg0ire\Enum\Tests\Fixtures\FooInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
+use Twig\Loader\LoaderInterface;
 use Twig\TwigFilter;
 
 /**
@@ -36,7 +37,7 @@ final class EnumExtensionTest extends TestCase
 
     public function testEnvironment()
     {
-        $twig = new Environment($this->createMock(\Twig_LoaderInterface::class));
+        $twig = new Environment($this->createMock(LoaderInterface::class));
         $twig->addExtension($this->extension);
 
         $this->assertInstanceOf(TwigFilter::class, $twig->getFilter('enum_label'));
