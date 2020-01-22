@@ -42,6 +42,7 @@ return PhpCsFixer\Config::create()
         'object_operator_without_whitespace' => true,
         'ordered_imports' => true,
         'space_after_semicolon' => true,
+        'single_line_throw' => false,
         'standardize_not_equals' => true,
         'trailing_comma_in_multiline_array' => true,
         'visibility_required' => [

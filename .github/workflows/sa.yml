@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: OSKAR-phpstan
-        uses: OskarStark/phpstan-ga@0.11.16
+        uses: "docker://oskarstark/phpstan-ga"
         with:
           args: analyse src/ --level=3
