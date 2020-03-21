@@ -148,6 +148,50 @@ final class MyEnum extends AbstractEnum
 }
 ```
 
+### Get label from a service
+
+If you want to get the constant label behind an enum value, you can instantiate 
+the `GetLabel` class and invoke it.
+
+```php
+use Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel;
+
+$label = new GetLabel();
+$label($value, 'Your\Enum\Class');
+```
+
+To enable translation, require the `symfony/translation` component
+and pass a `Symfony\Contracts\Translation\TranslationInterface` instance on the 
+`GetLabel` constructor
+
+```php
+use Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel;
+use Symfony\Contracts\Translation\TranslationInterface;
+
+$label = new GetLabel($translator);
+$label($value, 'Your\Enum\Class');
+```
+
+If you're using Symfony, tag the service and simply inject it.
+If translations are enabled, the `TranslatorInterface` will be automatically injected.
+
+```yaml
+services:
+    # ...
+    Greg0ire\Enum\Bridge\Symfony\Translator\Label: "@greg0ire_enum.symfony.translator.label"
+```
+
+```php
+public function index(GetLabel $label)
+{
+    $label($value, 'Your\Enum\Class');
+    $label($value, 'Your\Enum\Class', 'another_domain'); // Change the translation domain
+    $label($value, 'Your\Enum\Class', false); // Disable translation. In this case the class prefix wont be added
+    $label($value, 'Your\Enum\Class', false, true); // Disable translation but keep class prefix
+    $label($value, 'Your\Enum\Class', false, true, '.'); // Disable translation but keep class prefix with a custom separator
+}
+```
+
 ### Integration with other libraries
 
 `greg0ire/enum` integrates with other libraries. The list is available in the
@@ -230,8 +274,11 @@ You have to require the `twig/twig` package to get it working.
 
 The `enum_label` filter will try to return the constant label corresponding to the given value.
 
+This filter relies on the `Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel` service.
+
 It will try to translate it if possible. To enable translation, require the `symfony/translation` component
-and pass a `Symfony\Contracts\Translation\TranslationInterface` instance on the `EnumExtension` constructor.
+and pass a `Symfony\Contracts\Translation\TranslationInterface` instance on the `GetLabel` constructor. 
+`GetLabel` instance will be injected on the `EnumExtension` constructor.
 
 If translation is not available, you will have the default label with class prefixing.
 
