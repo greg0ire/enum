@@ -30,7 +30,7 @@ final class GetLabel
      * @param string      $namespaceSeparator namespace separator to use with the class prefix.
      *                                        This takes effect only if $classPrefixed is true
      */
-    public function run(
+    public function __invoke(
         $value,
         string $class,
         $translationDomain = null,
