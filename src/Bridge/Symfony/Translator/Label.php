@@ -11,11 +11,6 @@ final class GetLabel
      */
     private $translator;
 
-    /**
-     * Label constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
     public function __construct(TranslatorInterface $translator = null)
     {
         $this->translator = $translator;
