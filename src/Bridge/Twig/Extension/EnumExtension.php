@@ -78,7 +78,7 @@ final class EnumExtension extends AbstractExtension
         ?bool $classPrefixed = null,
         ?string $namespaceSeparator = null
     ): string {
-        return $this->label->run($value, $class, $translationDomain, $classPrefixed, $namespaceSeparator);
+        return ($this->label)($value, $class, $translationDomain, $classPrefixed, $namespaceSeparator);
     }
 
     /**
