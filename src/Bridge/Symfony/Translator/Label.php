@@ -13,6 +13,7 @@ final class Label
 
     /**
      * Label constructor.
+     *
      * @param TranslatorInterface $translator
      */
     public function __construct(TranslatorInterface $translator = null)
