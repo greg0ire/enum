@@ -3,7 +3,7 @@
 namespace Greg0ire\Enum\Bridge\Twig\Extension;
 
 use Greg0ire\Enum\AbstractEnum;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Greg0ire\Enum\Bridge\Symfony\Translator\Label;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -14,16 +14,16 @@ use Twig\TwigFunction;
 final class EnumExtension extends AbstractExtension
 {
     /**
-     * @var TranslatorInterface
+     * @var Label
      */
-    private $translator;
+    private $label;
 
     /**
-     * @param TranslatorInterface $translator
+     * @param Label $label
      */
-    public function __construct(TranslatorInterface $translator = null)
+    public function __construct(Label $label)
     {
-        $this->translator = $translator;
+        $this->label = $label;
     }
 
     /**
@@ -59,6 +59,7 @@ final class EnumExtension extends AbstractExtension
      *                                        is available and enabled, false otherwise.
      * @param string      $namespaceSeparator namespace separator to use with the class prefix.
      *                                        This takes effect only if $classPrefixed is true
+     * @return string
      */
     public function label(
         $value,
@@ -67,27 +68,7 @@ final class EnumExtension extends AbstractExtension
         ?bool $classPrefixed = null,
         ?string $namespaceSeparator = null
     ): string {
-        // Determine if the translator can be used or not.
-        $useTranslation = $this->translator instanceof TranslatorInterface
-            && (is_null($translationDomain) || is_string($translationDomain));
-
-        // If not defined, guess the default behavior.
-        if (is_null($classPrefixed)) {
-            $classPrefixed = $useTranslation;
-        }
-
-        $label = array_search(
-            $value,
-            call_user_func([$class, 'getConstants'], 'strtolower', $classPrefixed, $namespaceSeparator)
-        );
-
-        if ($useTranslation) {
-            $translatedLabel = $this->translator->trans($label, [], $translationDomain);
-
-            return $translatedLabel ?: $label;
-        }
-
-        return $label;
+        return $this->label->run($value, $class, $translationDomain, $classPrefixed, $namespaceSeparator);
     }
 
     /**
