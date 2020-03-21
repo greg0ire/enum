@@ -7,7 +7,7 @@
         <defaults public="false" />
 
         <service id="greg0ire_enum.symfony.translator.label" class="Greg0ire\Enum\Bridge\Symfony\Translator\Label" public="true">
-            <argument type="service" id="translator" />
+            <argument type="service" id="translator.default" />
         </service>
 
     </services>
