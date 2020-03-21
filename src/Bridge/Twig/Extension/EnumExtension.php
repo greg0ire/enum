@@ -18,9 +18,6 @@ final class EnumExtension extends AbstractExtension
      */
     private $label;
 
-    /**
-     * @param Label $label
-     */
     public function __construct(Label $label)
     {
         $this->label = $label;
@@ -59,7 +56,6 @@ final class EnumExtension extends AbstractExtension
      *                                        is available and enabled, false otherwise.
      * @param string      $namespaceSeparator namespace separator to use with the class prefix.
      *                                        This takes effect only if $classPrefixed is true
-     * @return string
      */
     public function label(
         $value,
