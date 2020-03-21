@@ -4,7 +4,7 @@ namespace Greg0ire\Enum\Bridge\Symfony\Translator;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class Label
+final class Label
 {
     /**
      * @var TranslatorInterface
