@@ -32,6 +32,7 @@ final class EnumExtension extends AbstractExtension
             
             return;
         }
+        
         $this->label = $label;
     }
 
