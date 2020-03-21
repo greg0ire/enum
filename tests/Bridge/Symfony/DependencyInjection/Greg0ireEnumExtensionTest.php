@@ -60,7 +60,7 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testTwigExtensionHasTheTranslator()
+    public function testLabelServiceHasTheTranslator()
     {
         $this->registerService('translator.logging.inner', \stdClass::class);
         $this->registerService('logger', \stdClass::class);
@@ -74,7 +74,7 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
         $compilerPass->process($this->container);
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'greg0ire_enum.twig.extension.enum',
+            'greg0ire_enum.symfony.translator.label',
             0,
             new Reference('translator.default')
         );
