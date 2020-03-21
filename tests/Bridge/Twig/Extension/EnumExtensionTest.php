@@ -2,6 +2,7 @@
 
 namespace Greg0ire\Enum\Tests\Bridge\Twig\Extension;
 
+use Greg0ire\Enum\Bridge\Symfony\Translator\Label;
 use Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension;
 use Greg0ire\Enum\Tests\Fixtures\FooEnum;
 use Greg0ire\Enum\Tests\Fixtures\FooInterface;
@@ -32,7 +33,7 @@ final class EnumExtensionTest extends TestCase
     protected function setUp(): void
     {
         $this->translator = $this->createMock(TranslatorInterface::class);
-        $this->extension = new EnumExtension($this->translator);
+        $this->extension = new EnumExtension(new Label($this->translator));
     }
 
     public function testEnvironment()
