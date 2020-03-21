@@ -18,7 +18,21 @@ final class EnumExtension extends AbstractExtension
      */
     private $label;
 
-    public function __construct(Label $label)
+    public function __construct($label)
+    {
+        if ($label instanceof TranslatorInterface) {
+            @trigger_error(sprintf(
+                'Providing a %s instance to %s is deprecated and will not be supported in 5.0. Please provide a %s instance instead.'
+                TranslatorInterface::class,
+                __METHOD__,
+                Label::class
+            ), E_USER_DEPRECATED);
+            $this->label = new Label($label);
+            
+            return;
+        }
+        $this->label = $label;
+    }
     {
         $this->label = $label;
     }
