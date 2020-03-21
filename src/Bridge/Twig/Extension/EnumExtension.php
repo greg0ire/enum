@@ -3,7 +3,8 @@
 namespace Greg0ire\Enum\Bridge\Twig\Extension;
 
 use Greg0ire\Enum\AbstractEnum;
-use Greg0ire\Enum\Bridge\Symfony\Translator\Label;
+use Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -14,7 +15,7 @@ use Twig\TwigFunction;
 final class EnumExtension extends AbstractExtension
 {
     /**
-     * @var Label
+     * @var GetLabel
      */
     private $label;
 
@@ -22,18 +23,15 @@ final class EnumExtension extends AbstractExtension
     {
         if ($label instanceof TranslatorInterface) {
             @trigger_error(sprintf(
-                'Providing a %s instance to %s is deprecated and will not be supported in 5.0. Please provide a %s instance instead.'
+                'Providing a %s instance to %s is deprecated and will not be supported in 5.0. Please provide a %s instance instead.',
                 TranslatorInterface::class,
                 __METHOD__,
-                Label::class
+                GetLabel::class
             ), E_USER_DEPRECATED);
-            $this->label = new Label($label);
+            $this->label = new GetLabel($label);
             
             return;
         }
-        $this->label = $label;
-    }
-    {
         $this->label = $label;
     }
 
