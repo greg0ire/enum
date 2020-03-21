@@ -29,10 +29,9 @@ final class EnumExtension extends AbstractExtension
                 GetLabel::class
             ), E_USER_DEPRECATED);
             $this->label = new GetLabel($label);
-            
+
             return;
         }
-        
         $this->label = $label;
     }
 
