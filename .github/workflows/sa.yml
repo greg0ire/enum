@@ -8,5 +8,7 @@ jobs:
       - uses: actions/checkout@master
       - name: OSKAR-phpstan
         uses: "docker://oskarstark/phpstan-ga"
+        env:
+          REQUIRE_DEV: true
         with:
           args: analyse src/ --level=3
