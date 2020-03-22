@@ -74,7 +74,7 @@ final class Greg0ireEnumExtensionTest extends AbstractExtensionTestCase
         $compilerPass->process($this->container);
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'greg0ire_enum.symfony.translator.label',
+            'greg0ire_enum.symfony.translator.get_label',
             0,
             new Reference('translator.default')
         );

@@ -6,6 +6,7 @@
     <services>
         <service id="greg0ire_enum.twig.extension.enum" class="Greg0ire\Enum\Bridge\Twig\Extension\EnumExtension">
             <tag name="twig.extension"/>
+            <argument type="service" id="greg0ire_enum.symfony.translator.get_label" />
         </service>
     </services>
 </container>
