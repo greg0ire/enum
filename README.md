@@ -157,7 +157,7 @@ the `GetLabel` class and invoke it.
 use Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel;
 
 $label = new GetLabel();
-$label($value, 'Your\Enum\Class');
+$label(Your\Enum\Class::VALUE, Your\Enum\Class::class);
 ```
 
 To enable translation, require the `symfony/translation` component
@@ -169,26 +169,26 @@ use Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel;
 use Symfony\Contracts\Translation\TranslationInterface;
 
 $label = new GetLabel($translator);
-$label($value, 'Your\Enum\Class');
+$label(Your\Enum\Class::VALUE, Your\Enum\Class::class);
 ```
 
-If you're using Symfony, tag the service and simply inject it.
+If you're using Symfony, alias the service and simply inject it.
 If translations are enabled, the `TranslatorInterface` will be automatically injected.
 
 ```yaml
 services:
     # ...
-    Greg0ire\Enum\Bridge\Symfony\Translator\Label: "@greg0ire_enum.symfony.translator.label"
+    Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel: "@greg0ire_enum.symfony.translator.get_label"
 ```
 
 ```php
 public function index(GetLabel $label)
 {
-    $label($value, 'Your\Enum\Class');
-    $label($value, 'Your\Enum\Class', 'another_domain'); // Change the translation domain
-    $label($value, 'Your\Enum\Class', false); // Disable translation. In this case the class prefix wont be added
-    $label($value, 'Your\Enum\Class', false, true); // Disable translation but keep class prefix
-    $label($value, 'Your\Enum\Class', false, true, '.'); // Disable translation but keep class prefix with a custom separator
+    $label(Your\Enum\Class::VALUE, Your\Enum\Class::class);
+    $label(Your\Enum\Class::VALUE, Your\Enum\Class::class, 'another_domain'); // Change the translation domain
+    $label(Your\Enum\Class::VALUE, Your\Enum\Class::class, false); // Disable translation. In this case the class prefix wont be added
+    $label(Your\Enum\Class::VALUE, Your\Enum\Class::class, false, true); // Disable translation but keep class prefix
+    $label(Your\Enum\Class::VALUE, Your\Enum\Class::class, false, true, '.'); // Disable translation but keep class prefix with a custom separator
 }
 ```
 
