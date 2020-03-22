@@ -18,7 +18,7 @@ final class TranslatorCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         if (class_exists(AbstractExtension::class) && $container->hasDefinition('translator.default')) {
-            $container->getDefinition('greg0ire_enum.twig.extension.enum')
+            $container->getDefinition('greg0ire_enum.symfony.translator.label')
                 ->addArgument(new Reference('translator.default'));
         }
     }

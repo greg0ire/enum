@@ -23,5 +23,7 @@ final class Greg0ireEnumExtension extends Extension
         if (class_exists(AbstractExtension::class)) {
             $loader->load('twig.xml');
         }
+
+        $loader->load('services.xml');
     }
 }

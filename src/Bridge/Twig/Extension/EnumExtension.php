@@ -3,6 +3,7 @@
 namespace Greg0ire\Enum\Bridge\Twig\Extension;
 
 use Greg0ire\Enum\AbstractEnum;
+use Greg0ire\Enum\Bridge\Symfony\Translator\GetLabel;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -14,16 +15,24 @@ use Twig\TwigFunction;
 final class EnumExtension extends AbstractExtension
 {
     /**
-     * @var TranslatorInterface
+     * @var GetLabel
      */
-    private $translator;
+    private $label;
 
-    /**
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator = null)
+    public function __construct($label)
     {
-        $this->translator = $translator;
+        if ($label instanceof TranslatorInterface) {
+            @trigger_error(sprintf(
+                'Providing a %s instance to %s is deprecated and will not be supported in 5.0. Please provide a %s instance instead.',
+                TranslatorInterface::class,
+                __METHOD__,
+                GetLabel::class
+            ), E_USER_DEPRECATED);
+            $this->label = new GetLabel($label);
+
+            return;
+        }
+        $this->label = $label;
     }
 
     /**
@@ -67,27 +76,7 @@ final class EnumExtension extends AbstractExtension
         ?bool $classPrefixed = null,
         ?string $namespaceSeparator = null
     ): string {
-        // Determine if the translator can be used or not.
-        $useTranslation = $this->translator instanceof TranslatorInterface
-            && (is_null($translationDomain) || is_string($translationDomain));
-
-        // If not defined, guess the default behavior.
-        if (is_null($classPrefixed)) {
-            $classPrefixed = $useTranslation;
-        }
-
-        $label = array_search(
-            $value,
-            call_user_func([$class, 'getConstants'], 'strtolower', $classPrefixed, $namespaceSeparator)
-        );
-
-        if ($useTranslation) {
-            $translatedLabel = $this->translator->trans($label, [], $translationDomain);
-
-            return $translatedLabel ?: $label;
-        }
-
-        return $label;
+        return ($this->label)($value, $class, $translationDomain, $classPrefixed, $namespaceSeparator);
     }
 
     /**
