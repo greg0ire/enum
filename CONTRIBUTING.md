@@ -8,7 +8,7 @@ Your help is essential for keeping it great.
 1. [Fork](https://github.com/greg0ire/enum/fork) and clone the repository
 2. Configure and install the dependencies: `composer install`
 3. Make sure the tests pass on your machine via the section [Running the tests](#running-the-tests)
-4. Create a new branch: `git checkout -b my-branch-name`
+4. Create a new branch: `git switch --create my-branch-name`
 5. Make your change, add tests, and make sure the tests still pass
 6. Push to your fork and [submit a pull request](https://github.com/greg0ire/enum/compare)
 7. Pat yourself on the back and wait for your pull request to be reviewed and merged.
