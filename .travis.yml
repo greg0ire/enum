@@ -1,9 +1,3 @@
-branches:
-  only:
-    - legacy-stable
-    - master
-    - unstable
-
 language: php
 
 php:
