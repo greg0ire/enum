@@ -2,7 +2,8 @@
 
 namespace Greg0ire\Enum;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Inflector\Inflector;
+use Doctrine\Inflector\InflectorFactory;
 use Greg0ire\Enum\Exception\InvalidEnumName;
 use Greg0ire\Enum\Exception\InvalidEnumValue;
 
@@ -18,6 +19,11 @@ abstract class AbstractEnum
     public static $defaultNamespaceSeparator = '_';
 
     private static $constCache = [];
+
+    /**
+     * @var Inflector
+     */
+    private static $inflector;
 
     /**
      * Uses reflection to find the constants defined in the class and cache
@@ -98,7 +104,11 @@ abstract class AbstractEnum
         ?string $namespaceSeparator = null
     ): array {
         $namespaceSeparator = $namespaceSeparator ?: static::$defaultNamespaceSeparator;
-        $classKey = str_replace('\\', $namespaceSeparator, Inflector::tableize(static::class));
+        $classKey = str_replace(
+            '\\',
+            $namespaceSeparator,
+            self::inflector()->tableize(static::class)
+        );
 
         $keys = static::getKeys(function ($key) use ($namespaceSeparator, $classKey) {
             return $classKey.$namespaceSeparator.$key;
@@ -109,6 +119,15 @@ abstract class AbstractEnum
         }
 
         return $keys;
+    }
+
+    private static function inflector(): Inflector
+    {
+        if (!isset(self::$inflector)) {
+            self::$inflector = InflectorFactory::create()->build();
+        }
+
+        return self::$inflector;
     }
 
     /**
