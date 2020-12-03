@@ -3,6 +3,7 @@ language: php
 php:
   - 7.2
   - 7.3
+  - 8.0
   - nightly
 
 cache:
@@ -12,7 +13,7 @@ cache:
 script:
   - >
     SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
-    SYMFONY_PHPUNIT_VERSION=8.5.2
+    SYMFONY_PHPUNIT_VERSION=8.5.13
     vendor/bin/simple-phpunit
 
 install:
