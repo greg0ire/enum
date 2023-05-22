@@ -45,7 +45,7 @@ final class EnumTest extends TestCase
     {
         return [
             [FooInterface::class],
-            [\StdClass::class],
+            [\stdClass::class],
             ['This\Does\Not\Exist\At\All'],
         ];
     }
