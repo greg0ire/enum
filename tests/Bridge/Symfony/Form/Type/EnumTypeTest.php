@@ -61,7 +61,7 @@ final class EnumTypeTest extends TypeTestCase
     {
         return [
             [FooInterface::class],
-            [\StdClass::class],
+            [\stdClass::class],
             ['This\Does\Not\Exist\At\All'],
         ];
     }
