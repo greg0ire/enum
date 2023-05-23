@@ -25,7 +25,7 @@ jobs:
         php-version:
           - "7.2"
           - "7.4"
-          - "8.1"
+          - "8.0"
         dependencies:
           - "highest"
         include:
@@ -51,8 +51,16 @@ jobs:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "${{ inputs.composer-options }}"
 
-      - name: "Run PHPUnit"
+      - name: "Run PHPUnit for PHP 7x"
+        if: "${{ startsWith(matrix.php-version, '7') }}"
         run: >
              SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
              SYMFONY_PHPUNIT_VERSION=8.5.13
              vendor/bin/simple-phpunit
+
+      -   name: "Run PHPUnit for PHP 8.0"
+          if: "${{ ! startsWith(matrix.php-version, '7') }}"
+          run: >
+            SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
+            SYMFONY_PHPUNIT_VERSION=9.5.28
+            vendor/bin/simple-phpunit
